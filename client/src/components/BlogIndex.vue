@@ -7,7 +7,7 @@
 					<div class="col-md-8">
 						<div class="content">
 
-							<router-view></router-view>
+							<router-view :posts="articles"></router-view>
 						</div>
 					</div>
 

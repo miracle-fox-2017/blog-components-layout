@@ -1,9 +1,9 @@
 <template>
 	<section>
-		<div class="blog-item" v-for="(article, index) in articles">
-			<h2 class="blog-title"><a href="/">{{ article.title }}</a></h2>
+		<div class="blog-item" v-for="(post, index) in posts">
+			<h2 class="blog-title"><router-link :to="`/articles/${post._id}`">{{ post.title }}</router-link></h2>
 			<div class="item-content">
-				{{ article.content }}
+				{{ post.content }}
 			</div>
 		</div>
 	</section>
@@ -12,22 +12,23 @@
 <script>
 	export default {
 		name: 'blog-item',
+		props: ['posts'],
 		data () {
 			return {
 				articles: []
 			}
 		},
 		methods: {
-			getArticles() {
+			/*getArticles() {
 				this.$http.get('/api/articles')
 					.then(articles => {
 						this.articles = articles.data;
 
 					}).catch(err => console.log(err.message));
-			}
+			}*/
 		},
 		created() {
-			this.getArticles();
+			// this.getArticles();
 		}
 	}
 </script>
