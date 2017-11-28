@@ -5,8 +5,10 @@ const createArticle = function(req,res){
   
   let newArticle = Article({
     title : req.body.title,
+    subtitle : req.body.subtitle,
     category : req.body.category,
-    description : req.body.description
+    description : req.body.description,
+    img : req.body.img
   })
   newArticle.save().then(function(data_Article){
     res.status(201).send({
@@ -27,15 +29,17 @@ const findAllArticle = function(req,res){
 }
 
 const updateArticle = function(req,res){
-  console.log('masuk')
+  // console.log('masuk')
   let id = {
     _id : ObjectId(req.params.id)
   }
   Article.findById(id).then(function(data_Article){
     // console.log(data_Article)
     data_Article.title = req.body.title,
+    data_Article.subtitle = req.body.subtitle,
     data_Article.category = req.body.category,
     data_Article.description = req.body.description
+    data_Article.img = req.body.img
     // save
     data_Article.save().then(function(data_Article){
       res.status(201).send({
@@ -45,6 +49,17 @@ const updateArticle = function(req,res){
     }).catch(function(err){
       res.status(500).send(`[-] err update article`)
     })
+  }).catch(function(err){
+    res.status(500).send(`[-] err find by id article`)
+  })
+}
+
+const articleByid = function(req,res){
+  let id = {
+    _id : ObjectId(req.params.id)
+  }
+  Article.findById(id).then(function(data_Article){
+    res.status(200).send(data_Article)
   }).catch(function(err){
     res.status(500).send(`[-] err find by id article`)
   })
@@ -65,5 +80,6 @@ module.exports = {
   createArticle,
   findAllArticle,
   updateArticle,
-  destroyArticle
+  destroyArticle,
+  articleByid
 }

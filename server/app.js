@@ -1,13 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const cors = require('cors')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
 const app = express()
 
 
 //parse application/json and look for raw text      
-app.use(morgan('dev'))                                  
+app.use(morgan('dev'))         
+app.use(cors())                         
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
