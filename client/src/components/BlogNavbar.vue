@@ -9,7 +9,7 @@
     <a class="item">
       About
     </a>
-    <div class="right menu">
+    <div class="right menu" v-if="!token">
       <div class="item">
         <div class="ui icon input">
           <input placeholder="Search..." type="text">
@@ -20,23 +20,33 @@
         Login
       </router-link>
     </div>
+    <div class="right menu" v-else>
+      <div class="item">
+        <div class="ui icon input">
+          <input placeholder="Search..." type="text">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+      <router-link to="/admin" class="ui item">
+        Admin
+      </router-link>
+      <router-link to="/logout" class="ui item">
+        Logout
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BlogNavbar'
+  name: 'BlogNavbar',
+  data () {
+    return {
+      token: localStorage.getItem('token')
+    }
+  }
 }
 </script>
 
 <style>
-  .item.navbar {
-    display: block !important;
-    height: 45px !important;
-    margin-top: 5px;
-  }
-
-  .item.navbar:hover {
-    background: #aaa !important;
-  }
 </style>

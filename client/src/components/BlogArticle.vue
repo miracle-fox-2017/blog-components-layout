@@ -2,7 +2,7 @@
   <div class="row">
     <div class="ui grid segment stackable">
       <div class="eleven wide column article">
-        <div class="ui header">
+        <div class="ui header blue">
           <h1>{{article.title}}</h1>
         </div>
         <div class="ui divider"></div>
@@ -53,5 +53,6 @@ export default {
 <style>
   .article {
     padding: 3em !important;
+    text-align: justify;
   }
 </style>

@@ -7,7 +7,7 @@
           <img class="ui small image" src="../assets/logo1.png" alt="">
         </router-link>
         <div class="twelve wide column short">
-          <router-link :to="'/article/'+article._id" class="ui header">
+          <router-link :to="'/article/'+article._id" class="ui header blue">
             {{article.title}}
           </router-link>
         </div>
