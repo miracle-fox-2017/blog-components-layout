@@ -3,15 +3,16 @@
     <main>
       <aside class="sidebar">
         <div v-for="post in posts">
-          {{ post.title }}
+          <h2>{{ post.title }}</h2>
+          <p><router-link v-bind:to="`/blog/article/${post._id}`">Read More</router-link></p>
         </div>
       </aside>
       <div class="content">
+        <router-view/>
       </div>
     </main>
   </div>
 </template>
-
 
 <script>
   import axios from 'axios'
