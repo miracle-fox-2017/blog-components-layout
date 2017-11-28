@@ -2,8 +2,14 @@
 
 <div>
     <h3>{{msg}}</h3>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Article</button>
-
+    <div class="container-fluid">
+            <ul>
+                <li class="text-center">
+                    <a href="#" data-toggle="modal" data-target="#add-article">Add Article</a>
+                </li>
+            </ul>
+             <AddArticle> </Addarticle>
+        </div>
     <div class="table-responsive">          
         <table class="table">
             <thead>
@@ -47,13 +53,10 @@
 
 </div>
 
-   
-
 </template>
 
 <script>
-
-
+import AddArticle from '@/components/AddArticle'
 export default {
     name : 'Admin',
     data(){
@@ -61,6 +64,9 @@ export default {
             msg: 'Halaman Admin',
             articles: []
         }
+    },
+    components:{
+        AddArticle
     },
     methods:{
         getDataArticle(){
