@@ -3,9 +3,13 @@
     <div class="row">
       <div class="col-md-3">
         <Sidebar :blogs="blogs"></Sidebar>
+        <Post></Post>
+
       </div>
       <div class="col-md-9">
         <router-view :blogs="blogs"></router-view>
+      </div>
+      <div class="col-md-12">
       </div>
     </div>
   </div>
@@ -14,6 +18,7 @@
 <script>
   import Sidebar from '@/components/Sidebar'
   import MainPage from '@/components/MainPage'
+  import Post from '@/components/Post'
   export default {
     name: 'MainBlog',
     data () {
@@ -23,7 +28,8 @@
     },
     components: {
       Sidebar,
-      MainPage
+      MainPage,
+      Post
     },
     methods: {
       getAllArticles () {
@@ -43,3 +49,9 @@
     }
   }
 </script>
+
+<style>
+.container {
+  padding-bottom: 2em
+}
+</style>
