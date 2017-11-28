@@ -26,9 +26,8 @@ const getById = (req, res) => {
 }
 
 const destroy = (req, res) => {
-  Post.remove({
-    id: req.body.id
-  })
+  console.log(req.params.id);
+  Post.findByIdAndRemove(req.params.id)
   .then(success => res.status(200).send(success))
   .catch(err => res.status(500).send(err))
 }

@@ -19,29 +19,10 @@
 <script>
 import navbar from '@/components/admin/TheNavbarAdmin'
 import sidebar from '@/components/admin/TheSidebar'
-import userPost from '@/components/admin/UserPost'
 export default {
   components: {
     navbar: navbar,
-    sidebar: sidebar,
-    UserPost: userPost
-  },
-  data () {
-    return {
-      articles: []
-    }
-  },
-  methods: {
-    getArticles () {
-      this.$http.get('/posts')
-      .then(({data}) => {
-        this.articles = data
-      })
-      .catch((err) => console.log(err))
-    }
-  },
-  created () {
-    this.getArticles()
+    sidebar: sidebar
   }
 }
 </script>

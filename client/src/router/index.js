@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import AdminIndex from '@/components/admin/TheIndexAdmin'
 import UserPostsAll from '@/components/admin/UserPostsAll'
 import UserPost from '@/components/admin/UserPostDetail'
+import AddPost from '@/components/admin/AddPost'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
           path: ':id',
           name: 'PostDetail',
           component: UserPost
+        },
+        {
+          path: 'AddPost',
+          name: 'AddPost',
+          component: AddPost
         }
       ]
     }

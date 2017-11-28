@@ -16,10 +16,12 @@
           }
           }">
           <div class="btn btn-primary">
-          <!-- taruh link untuk melihat full post nya -->
           Read More
         </div>
         </router-link>
+        <div class="btn btn-danger" @click="deletePost">
+          Delete
+        </div>
       </div>
     </div>
     <div class="whitespace"></div>
@@ -32,6 +34,11 @@ export default {
   methods: {
     getId () {
       return this.article._id
+    },
+    deletePost () {
+      this.$emit('delete-post', {
+        id: this.getId()
+      })
     }
   }
 }
