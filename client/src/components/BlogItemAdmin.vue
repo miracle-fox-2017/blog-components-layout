@@ -97,6 +97,7 @@
 			},
 
 			initNewArticle() {
+				this.articleFormType = 'create';
 				this.editedArticle = {
 					_id: '',
 					title: '',
@@ -131,6 +132,7 @@
 						}).catch(err => console.log(err.message))
 
 				} else {
+					console.log('~~~~~~~~~~CREATE ARTICLE')
 					let newArticle = {
 						title: this.$refs.article_title.value,
 						content: this.$refs.article_content.value,
