@@ -1,7 +1,7 @@
 <template>
   <div class="ui stackable menu">
     <div class="image item">
-      <img src="" alt="">
+      <img src="../assets/logo1.png" alt="#">
     </div>
     <a class="active item">
       Home
@@ -16,7 +16,7 @@
           <i class="search link icon"></i>
         </div>
       </div>
-      <router-link to="/login" class="ui item">
+      <router-link to="/login" class="ui item" replace>
         Login
       </router-link>
     </div>

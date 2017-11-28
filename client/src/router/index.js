@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import BlogHome from '@/components/BlogHome'
 import BlogLogin from '@/components/BlogLogin'
+import BlogContent from '@/components/BlogContent'
+import BlogArticle from '@/components/BlogArticle'
 
 Vue.use(Router)
 
@@ -10,7 +12,17 @@ export default new Router({
     {
       path: '/',
       name: 'BlogHome',
-      component: BlogHome
+      component: BlogHome,
+      children: [
+        {
+          path: '',
+          component: BlogContent
+        },
+        {
+          path: '/article/:id',
+          component: BlogArticle
+        }
+      ]
     },
     {
       path: '/login',

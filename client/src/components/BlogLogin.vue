@@ -16,14 +16,13 @@
         </div>
       </div>
       <div class="ui segment">
-        No account? <a href="#">SignUp</a>
+        <router-link to="/" replace>Back to Home</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'BlogLogin',
   data () {
@@ -34,7 +33,7 @@ export default {
   },
   methods: {
     login: function () {
-      axios.post('http://localhost:3000/users/login', {
+      this.$http.post('/users/login', {
         username: this.username,
         password: this.password
       })
@@ -50,12 +49,8 @@ export default {
 </script>
 
 <style>
-body {
-  background: #eee !important;
-}
-
 .login-header {
-  margin-top: 5em !important;
+  margin-top: 6em !important;
 }
 
 .form-login {
