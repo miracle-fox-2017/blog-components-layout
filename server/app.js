@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
-app.use(history())
+// app.use(history())
 
 app.use('/', index);
 app.use('/users', users);

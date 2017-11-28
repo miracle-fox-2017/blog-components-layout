@@ -17,6 +17,14 @@ const getAll = (req, res) => {
   .catch(err => res.status(500).send(err))
 }
 
+const getById = (req, res) => {
+  Post.findOne({
+    id: req.body.id
+  })
+  .then(result => res.status(200).send(result))
+  .catch(err => res.status(500).send(err))
+}
+
 const destroy = (req, res) => {
   Post.remove({
     id: req.body.id
@@ -28,5 +36,6 @@ const destroy = (req, res) => {
 module.exports = {
   create,
   getAll,
+  getById,
   destroy
 };

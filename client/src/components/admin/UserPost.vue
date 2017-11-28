@@ -1,5 +1,6 @@
 <template>
-  <div class="BlogPost col-sm-6 col-md-8">
+  <div class="BlogPost">
+    <div class="whitespace"></div>
     <div class="card">
       <div class="card-header">
        {{article.title}}
@@ -8,21 +9,36 @@
         <p>
           {{article.post}}
         </p>
-        <div class="btn btn-primary">
+        <router-link :to="{
+          name: 'PostDetail',
+          params: {
+            Id: getId()
+          }
+          }">
+          <div class="btn btn-primary">
           <!-- taruh link untuk melihat full post nya -->
           Read More
         </div>
+        </router-link>
       </div>
     </div>
+    <div class="whitespace"></div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['article']
+  props: ['article'],
+  methods: {
+    getId () {
+      return this.article._id
+    }
+  }
 }
 </script>
 
 <style>
-
+.whitespace {
+  margin-bottom: 16px;
+}
 </style>
