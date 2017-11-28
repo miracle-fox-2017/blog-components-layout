@@ -1,8 +1,10 @@
 <template>
     <div class="col-md-2" >
-      <ul class="nav">
-          <li v-for="article in articles"> <router-link :to="`/blog/${article._id}`">{{ article.title }}</router-link></li>
-      </ul>
+      <ul  v-for="article in articles" >
+          <li> 
+              <router-link :to="`/blog/${article._id}`">{{ article.title }}</router-link>          
+          </li>
+      </ul> 
     </div>
 </template>
 

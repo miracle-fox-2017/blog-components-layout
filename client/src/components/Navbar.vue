@@ -29,7 +29,7 @@
             <div class="col-sm-2">
               <ul>
                 <li class="rout">
-                  <router-link to="/">Admin</router-link >
+                  <router-link to="/admin">Admin</router-link >
                 </li>                   
               </ul> 
             </div>            

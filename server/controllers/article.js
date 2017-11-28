@@ -50,10 +50,39 @@ function remove(req,res) {
   })	
 }
 
+function update(req,res) {
+  console.log(req.body)
+  Article.findOne({
+    _id : req.params.articleId
+  })
+  .then(oldArticle => {
+      Article.findById({
+        _id : req.params.articleId
+      })
+      .then(article => {
+        article.set({
+          author : req.body.author || article.author,
+          title :  req.body.title || article.title,
+          desc :  req.body.desc || article.desc,
+          year : req.body.year || article.year,
+          link : req.body.link || article.link
+        })
+          article.save((err,newArticle) => {
+            if(err){
+              console.log(err)
+            }
+            
+            res.send({ oldArticle : oldArticle, newArticle : newArticle })
+          })
+      })
+  })
+}  
+
 
 module.exports = {
 	remove,
 	find,
 	create,
-  findAll
+  findAll,
+  update
 }

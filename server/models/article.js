@@ -5,7 +5,8 @@ const articleSchema = new Schema({
 	author : String,
 	title : String,
 	desc : String,
-	year : Number
+	year : Number,
+	link : String
 })
 
 

@@ -7,6 +7,7 @@ router.post('/add', Controller.create);
 router.get('/article', Controller.findAll);
 router.get('/article/:articleId', Controller.find);
 router.delete('/article/:articleId', Controller.remove);
+router.put('/edit/:articleId', Controller.update);
 
 
 module.exports = router;

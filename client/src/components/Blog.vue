@@ -1,8 +1,7 @@
 <template>
 <div class="container">
+  <leftBar :articles="articles" />
    <div id="blog" class="row">           
-        <leftBar :articles="articles" />
-
         <router-view :articles="articles" />
    </div>
 </div>
