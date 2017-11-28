@@ -1,7 +1,7 @@
 const chai     = require('chai')
       expect   = chai.expect  ,
       chaiHttp = require('chai-http')
-      app      = require('../app').listen(3001)
+      app      = require('../app')
 
 chai.use(chaiHttp)
 

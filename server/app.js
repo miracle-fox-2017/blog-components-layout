@@ -1,13 +1,15 @@
-const express = require('express'),
-      path = require('path'),
-      favicon = require('serve-favicon'),
-      logger = require('morgan'),
+const express      = require('express'),
+      path         = require('path'),
+      favicon      = require('serve-favicon'),
+      logger       = require('morgan'),
       cookieParser = require('cookie-parser'),
-      bodyParser = require('body-parser'),
-      cors = require('cors'),
-      index = require('./routes/index'),
-      users = require('./routes/users')
-      posts = require('./routes/posts')
+      bodyParser   = require('body-parser'),
+      cors         = require('cors'),
+      history      = require('connect-history-api-fallback'),
+      index        = require('./routes/index'),
+      users        = require('./routes/users'),
+      posts        = require('./routes/posts')
+      
 
 const app = express();
 
@@ -16,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
+app.use(history())
 
 app.use('/', index);
 app.use('/users', users);
