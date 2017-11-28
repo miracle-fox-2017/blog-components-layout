@@ -2,6 +2,7 @@
 
 <div>
     <h3>{{msg}}</h3>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Article</button>
 
     <div class="table-responsive">          
         <table class="table">
@@ -43,11 +44,15 @@
             </tbody>
         </table>
     </div>
+
 </div>
+
+   
 
 </template>
 
 <script>
+
 
 export default {
     name : 'Admin',
@@ -68,8 +73,14 @@ export default {
                 })
         },
         deleteArticle(id){
-
-           this.$http.delete(`api/articles/${id}`)
+          let index = this.articles.findIndex(element =>{
+               if(element._id == id){
+                  return this.articles.indexOf(element)
+               }
+            })
+          
+          this.articles.splice(index, 1)
+          this.$http.delete(`api/articles/${id}`)
                 .then((data)=>{
                     console.log(data)
                 })

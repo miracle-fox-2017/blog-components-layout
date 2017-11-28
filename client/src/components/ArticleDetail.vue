@@ -41,5 +41,8 @@ export default {
 </script>
 
 <style scoped>
-
+.panel-body img{
+    width: 20%;
+    height: 10%;
+}
 </style>

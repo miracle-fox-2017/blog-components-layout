@@ -50,8 +50,5 @@ export default {
 .header{
     margin-bottom : 25px;
 }
-.panel-body img{
-    width: 20%;
-    height: 10%;
-}
+
 </style>
