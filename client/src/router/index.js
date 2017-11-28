@@ -20,7 +20,8 @@ export default new Router({
         },
         {
           path: '/article/:id',
-          component: BlogArticle
+          component: BlogArticle,
+          props: true
         }
       ]
     },

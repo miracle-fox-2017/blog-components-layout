@@ -3,9 +3,9 @@
     <div class="image item">
       <img src="../assets/logo1.png" alt="#">
     </div>
-    <a class="active item">
+    <router-link to="/" class="active item">
       Home
-    </a>
+    </router-link>
     <a class="item">
       About
     </a>
@@ -16,7 +16,7 @@
           <i class="search link icon"></i>
         </div>
       </div>
-      <router-link to="/login" class="ui item" replace>
+      <router-link to="/login" class="ui item">
         Login
       </router-link>
     </div>

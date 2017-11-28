@@ -9,7 +9,7 @@
           <blogshortarticle v-for="(article,i) in articles" :key="i" :article="article"></blogshortarticle>
         </div>
         <div class="five wide column large screen only">
-          <blogsidebar/>
+          <blogsidebar :articles="articles"/>
         </div>
       </div>
     </div>
@@ -25,23 +25,7 @@ export default {
     blogsidebar,
     blogshortarticle
   },
-  data () {
-    return {
-      articles: ''
-    }
-  },
-  methods: {
-    getAllArticle () {
-      this.$http.get('/articles')
-      .then(articles => {
-        this.articles = articles.data
-      })
-      .catch((err) => console.log(err))
-    }
-  },
-  mounted () {
-    this.getAllArticle()
-  }
+  props: ['articles']
 }
 </script>
 
