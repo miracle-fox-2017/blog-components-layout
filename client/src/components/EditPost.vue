@@ -13,19 +13,18 @@
             <h4 class="modal-title">Edit Post</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal">
+            <form class="form-horizontal" v-on:submit.prevent="postArticle">
               <fieldset>
                 <div class="form-group">
                   <label for="title" class="col-lg-2 control-label">Title</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="title" placeholder="Title" type="text">
+                    <input class="form-control" id="title" placeholder="Title" type="text" :value="editarticle.title">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+                  <label for="textArea" class="col-lg-2 control-label">Content</label>
                   <div class="col-lg-10">
-                    <textarea class="form-control" rows="3" id="textArea"></textarea>
-                    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                    <textarea class="form-control" rows="3" id="textArea">{{editarticle.content}}</textarea>
                   </div>
                 </div>
                 <div class="form-group modal-footer">
@@ -45,7 +44,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  props: ['editarticle'],
   name: 'Editpost',
   data () {
     return {
@@ -53,6 +54,25 @@ export default {
     }
   },
   methods: {
+    postArticle () {
+      axios.put('http://localhost:3000/articles/' + this.editarticle.id, {
+        title: this.title,
+        content: this.content
+      })
+      .then((response) => {
+        alert('Success Edit')
+        let obj = {
+          id: response.data.id,
+          title: response.data.title,
+          content: response.data.content
+        }
+        this.$emit('new-article', obj)
+      })
+      .catch((error) => {
+        alert('UnSuccess Edit')
+        console.log(error)
+      })
+    }
   },
   created () {
   }

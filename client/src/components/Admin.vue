@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <h1>{{ msg }}</h1>
-    <addpost />
+    <addpost @new-article="newArticleHandle"/>
     <table class="table table-striped table-hover ">
       <thead>
         <tr>
@@ -17,14 +17,14 @@
           <td>{{ article.title }}</td>
           <td>DDMMYY HHMMSS</td>
           <td>
-            <button class="btn btn-link btn-xs" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-link btn-xs" data-toggle="modal" data-target="#edit" @click="getId(article.id)" ><span class="glyphicon glyphicon-pencil"></span></button>
             <!-- <a href="#" class="btn btn-link btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> -->
-            <button class="btn btn-link btn-xs"><span class="glyphicon glyphicon-trash"></span></button >
+            <button class="btn btn-link btn-xs" @click="delId(article.id)"><span class="glyphicon glyphicon-trash"></span></button >
           </td>
         </tr>
       </tbody>
     </table> 
-    <editpost />
+    <editpost :editarticle="article" @new-article="editArticleHandle"/>
   </div>
 </template>
 
@@ -37,7 +37,8 @@ export default {
   data () {
     return {
       msg: 'Admin Dashboard',
-      articles: []
+      articles: [],
+      article: ''
     }
   },
   components: {
@@ -45,6 +46,33 @@ export default {
     editpost
   },
   methods: {
+    newArticleHandle (payload) {
+      this.articles.push(payload)
+    },
+    getId (id) {
+      let article = this.articles.find(function (e) {
+        return e.id === id
+      })
+      this.article = article
+    },
+    editNewArticleHandle (payload) {
+      console.log(payload)
+    },
+    delId (id) {
+      axios.delete('http://localhost:3000/articles/' + id)
+      .then(result => {
+        console.log(result)
+        let article = this.articles.findIndex(function (e) {
+          return e.id === id
+        })
+        this.articles.splice(article, 1)
+        alert('Success delete')
+      })
+      .catch(err => {
+        console.log(err)
+        alert('UnSuccess delete')
+      })
+    }
   },
   created () {
     axios.get('http://localhost:3000/articles')

@@ -3,7 +3,7 @@
     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add" ><span class="glyphicon glyphicon-plus"></span> Add New Post</button>
     
     <!-- Modal -->
-    <div id="add" class="modal fade" role="dialog">
+    <div id="add" class="modal fade" role="dialog" ref="add">
       <div class="modal-dialog">
         
         <!-- Modal content-->
@@ -13,19 +13,18 @@
             <h4 class="modal-title">Add Post</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal">
+            <form class="form-horizontal" v-on:submit.prevent="postArticle">
               <fieldset>
                 <div class="form-group">
                   <label for="title" class="col-lg-2 control-label">Title</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="title" placeholder="Title" type="text">
+                    <input v-model="title" class="form-control" id="title" placeholder="Title" type="text">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+                  <label for="content" class="col-lg-2 control-label">Content</label>
                   <div class="col-lg-10">
-                    <textarea class="form-control" rows="3" id="textArea"></textarea>
-                    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                    <textarea v-model="content" class="form-control" rows="3" id="content"></textarea>
                   </div>
                 </div>
                 <div class="form-group modal-footer">
@@ -45,14 +44,38 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Addpost',
   data () {
     return {
-      msg: 'Admin Add Post'
+      msg: 'Admin Add Post',
+      title: '',
+      content: ''
     }
   },
   methods: {
+    postArticle () {
+      axios.post('http://localhost:3000/articles', {
+        title: this.title,
+        content: this.content
+      })
+      .then((response) => {
+        alert('Success Added')
+        let obj = {
+          id: response.data.id,
+          title: response.data.title,
+          content: response.data.content
+        }
+        this.$emit('new-article', obj)
+        this.title = ''
+        this.content = ''
+      })
+      .catch((error) => {
+        alert('UnSuccess Added')
+        console.log(error)
+      })
+    }
   },
   created () {
   }
