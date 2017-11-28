@@ -2,7 +2,7 @@
   <b-navbar class="sticky-top" toggleable="md" type="dark" variant="success">
 
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-    <b-navbar-brand href="#">MyBlog</b-navbar-brand>
+    <b-navbar-brand style="margin-left: 2%;" href="#">MyBlog</b-navbar-brand>
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav>

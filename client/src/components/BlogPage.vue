@@ -1,22 +1,22 @@
 <template>
 
   <b-container class="content" >
-    <b-row class="container">
+    <b-row>
       <Sidebar></Sidebar>
-      <router-view></router-view>
+      <DetailArticle></DetailArticle>
     </b-row>
   </b-container>
 
 </template>
 
 <script>
-import MainContent from '@/components/MainContent'
+import DetailArticle from '@/components/DetailArticle'
 import Sidebar from '@/components/Sidebar'
 
 export default {
   name: 'Contents',
   components: {
-    MainContent,
+    DetailArticle,
     Sidebar
   }
 }

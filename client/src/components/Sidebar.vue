@@ -10,7 +10,7 @@
         </div>
         <div v-for="(article, index) in allarticle" :key="index" class="panel-body">
           <div class="list-group">
-            <router-link style="text-decoration: none;" :to="'/blog/' + article._id + '/' + article.title.split(' ').join('-')">
+            <router-link style="text-decoration: none;" :to="article._id + '/' + article.title.split(' ').join('-')">
             <span class="list-group-item list-group-item-action">{{ article.title }}</span>
             </router-link>
         </div>

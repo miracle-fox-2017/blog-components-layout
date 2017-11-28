@@ -1,8 +1,8 @@
 <template>
-  <div class="col-md-8">
+  <div style="padding-bottom:13%;" class="col-md-8">
     <h2>{{ article.title }}</h2>
     <div class="img-row row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <img v-bind:src="article.img" style="height: auto;" class="img-responsive img-fluid"/>
       </div>
     </div>

@@ -1,15 +1,23 @@
 <template>
   <div id="app">
+    <Navbar/>
     <router-view/>
+    <Footers/>
   </div>
 </template>
 
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Navbar from '@/components/Navbar'
+import Footers from '@/components/Footer'
 
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Navbar,
+    Footers
+  }
 }
 </script>
 

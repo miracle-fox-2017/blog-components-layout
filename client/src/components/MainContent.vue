@@ -1,5 +1,5 @@
 <template>
-  <b-col style="padding-bottom:20%;" cols="12" md="8">
+  <b-col style="padding-bottom:13%;" cols="12" md="8">
     <b-row>
       <div class="card-margin" v-for="(article, index) in allarticle" :key="index">
         <b-card-group>
@@ -12,7 +12,7 @@
                   {{ article.subtitle}}
               </p>
               <div slot="footer">
-                <router-link style="text-decoration: none;" :to="'/blog/' + article._id + '/' + article.title.split(' ').join('-')">
+                <router-link style="text-decoration: none;" :to="article._id + '/' + article.title.split(' ').join('-')">
                   <small class="text-muted">Read more</small>
                 </router-link>
             </div>
