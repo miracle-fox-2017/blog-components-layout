@@ -1,7 +1,9 @@
 <template>
   <div class="col-md-3">
     <div class="list-group">
-      <span class="list-group-item active">List Articles</span>
+      <router-link :to="{ path: '/blog/' }" class="list-group-item active">
+        List Articles
+      </router-link>
       <span v-for="article in childarticles">
         <router-link :to="{ path: '/blog/' + article.id }" class="list-group-item">
           {{ article.title }}
@@ -13,7 +15,7 @@
 
 <script>
 export default {
-  props: ['childarticles'],
+  props: ['childarticles']
 }
 </script>
 

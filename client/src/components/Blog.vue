@@ -1,7 +1,6 @@
 <template>
   <div class="blog">
     <div class="row">
-      <!-- <my-todo :todos="todos" :username="username" :token="token" @edit-todo="editHandler"/> -->
       <sidebar :childarticles="articles" />
       <router-view :childarticles="articles" />
     </div>
