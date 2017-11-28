@@ -1,23 +1,35 @@
 <template>
   <div class="blog">
     <div class="row">
-      <sidebar />
-      <router-view />
+      <!-- <my-todo :todos="todos" :username="username" :token="token" @edit-todo="editHandler"/> -->
+      <sidebar :childarticles="articles" />
+      <router-view :childarticles="articles" />
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import Sidebar from '@/components/Sidebar'
 export default {
   name: 'Blog',
   data () {
     return {
-      msg: 'Hello Blog'
+      msg: 'Hello Blog',
+      articles: []
     }
   },
   components: {
     Sidebar
+  },
+  created () {
+    axios.get('http://localhost:3000/articles')
+    .then(result => {
+      this.articles = result.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 }
 </script>

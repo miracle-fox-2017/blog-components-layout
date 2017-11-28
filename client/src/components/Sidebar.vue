@@ -1,20 +1,19 @@
 <template>
   <div class="col-md-3">
     <div class="list-group">
-      <router-link :to="{ path: '/blog/1'}" class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-      </router-link>
-      <router-link :to="{ path: '/blog/2'}" class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-      </router-link>
+      <span class="list-group-item active">List Articles</span>
+      <span v-for="article in childarticles">
+        <router-link :to="{ path: '/blog/' + article.id }" class="list-group-item">
+          {{ article.title }}
+        </router-link>
+      </span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['childarticles'],
 }
 </script>
 
