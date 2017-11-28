@@ -13,9 +13,9 @@ router.get('/:id', blogController.findById)
 router.post('/', blogController.postNewArticle)
 
 // Delete article
-router.delete('/:id', loginController.verifyLogin, loginController.verifyById, blogController.removeArticle)
+router.delete('/:id', loginController.verifyById, blogController.removeArticle)
 
 // Update article
-router.put('/:id', loginController.verifyLogin, loginController.verifyById, blogController.updateArticle)
+router.put('/:id', loginController.verifyById, blogController.updateArticle)
 
 module.exports = router

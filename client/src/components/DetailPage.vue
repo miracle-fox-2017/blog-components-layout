@@ -27,10 +27,8 @@
     },
     methods: {
       getArticlesDetails (contentId) {
-        console.log(contentId)
         this.$axios.get(`http://localhost:3000/articles/${contentId}`)
         .then((response) => {
-          console.log(response.data)
           this.detailBlog = response.data
         })
       }
@@ -39,8 +37,8 @@
       this.getArticlesDetails(this.contentId)
     },
     watch: {
-      contentId (tuturu) {
-        this.contentId = tuturu
+      contentId (contentId) {
+        this.contentId = contentId
         this.getArticlesDetails(this.contentId)
       }
     }

@@ -3,7 +3,7 @@ const compare = require('../helper/compare.js')
 const jwt = require('jsonwebtoken')
 
 // Check login credentials
-let getLogin = function(req,res){
+let getLogin = function(req,res,next){
   console.log(req.body.password);
   User.findOne(
     {
@@ -15,33 +15,38 @@ let getLogin = function(req,res){
         res.status(500).send(err)
       }
       else{
-        compare(req.body.password,dataUsers.password).then(function(dataResponse){
-          if(dataResponse){
-            jwt.sign(
-              {
-                id: dataUsers._id,
-                username: dataUsers.username,
-                role: dataUsers.role
-              },
-              'hahahaha',
-              function(err,token){
-                if(err){
-                  console.log(err);
-                  res.status(500).send(err)
+        if(dataUsers !== null){
+          compare(req.body.password,dataUsers.password).then(function(dataResponse){
+            if(dataResponse){
+              jwt.sign(
+                {
+                  id: dataUsers._id,
+                  username: dataUsers.username,
+                  role: dataUsers.role
+                },
+                'hahahaha',
+                function(err,token){
+                  if(err){
+                    console.log(err);
+                    res.status(500).send(err)
+                  }
+                  else{
+                    req.isVerified = token
+                    next()
+                  }
                 }
-                else{
-                  req.header.token = token
-                  res.status(200).send(token)
-                }
-              }
-            )
-          }
-          else{
-            res.status(401).send('not authorized')
-          }
-        }).catch(function(err){
-          res.status(500).send(err)
-        })
+              )
+            }
+            else{
+              res.status(401).send('not authorized')
+            }
+          }).catch(function(err){
+            res.status(500).send(err)
+          })
+        }
+        else{
+          res.status(401).send('not authorized')
+        }
       }
     }
   )
@@ -51,15 +56,15 @@ let getLogin = function(req,res){
 let verifyLogin = function(req,res,next){
   console.log(req.header.token);
   jwt.verify(
-    req.header.token,
+    req.isVerified,
     'hahahaha',
     function(err,decoded){
       if(err){
         res.send(err)
       }
       else{
-        req.isVerified = decoded
-        next()
+        req.header.decode = decoded
+        res.status(200).send(decoded)
       }
     }
   )
@@ -67,7 +72,8 @@ let verifyLogin = function(req,res,next){
 
 // Role verification (admin only)
 let verifyAdmin = function(req,res,next){
-  if(req.isVerified.role === 'admin'){
+  let dataDecoded = req.header.decode
+  if(dataDecoded.role === 'admin'){
     next()
   }
   else{
@@ -77,7 +83,8 @@ let verifyAdmin = function(req,res,next){
 
 // Role verification (by id)
 let verifyById = function(req,res,next){
-  if(req.isVerified.id == req.params.id || req.isVerified.role === 'admin'){
+  let dataDecoded = req.header.decode
+  if(dataDecoded.id == req.params.id || dataDecoded.role === 'admin'){
     next()
   }
   else{

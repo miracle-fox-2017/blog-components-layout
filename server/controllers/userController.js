@@ -8,6 +8,19 @@ let findAllUsers = function(req,res){
   })
 }
 
+// Find user by id
+let findUserById = function(req,res){
+  User.findOne(
+    {
+      _id: req.params.id
+    }
+  ).then(function(dataUsers){
+    res.status(200).send(dataUsers)
+  }).catch(function(err){
+    res.status(500).send(err)
+  })
+}
+
 // Adding new user
 let addNewUser = function(req,res){
   crypt(req.body.password).then(function(dataPassword){
@@ -61,6 +74,7 @@ let updateUser = function(req,res){
 
 module.exports = {
   findAllUsers,
+  findUserById,
   addNewUser,
   removeUser,
   updateUser

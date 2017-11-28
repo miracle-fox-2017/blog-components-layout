@@ -33,7 +33,8 @@
           password: this.password
         })
         .then((response) => {
-          console.log(response.data)
+          localStorage.setItem('dataLogin', JSON.stringify(response.data))
+          this.$router.push('main_content')
         }).catch((err) => {
           console.log(err)
         })
