@@ -2,7 +2,7 @@
 	<div class="header-wrap">
 		<header class="main-header">
 			<h1 class="site-title">
-				<a href="/">Fujianto Blog</a>
+				<router-link :to="`/`">Fujianto Blog</router-link>
 			</h1><!-- /.site-title -->
 		</header><!-- /.main-header -->
 

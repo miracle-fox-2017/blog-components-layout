@@ -177,6 +177,7 @@
 		},
 
 		created() {
+			this.initNewArticle();
 			this.getArticles();
 		}
 
