@@ -1,9 +1,8 @@
 <template>
   <div class="col-md-9">
     <div class="article">
-      <h2>{{ childarticles[$route.params.id-1].title }}</h2>
-      <h6>dd:mm:yy hh:mm:ss</h6>
-      <p>{{ childarticles[$route.params.id-1].content }}</p>
+      <h2>{{ childarticles[pos].title }}</h2>
+      <p>{{ childarticles[pos].article }}</p>
     </div>
   </div>
 </template>
@@ -14,8 +13,28 @@ export default {
   name: 'Article',
   data () {
     return {
-      msg: 'Article'
+      msg: 'Article',
+      pos: ''
     }
+  },
+  methods: {
+    getArticle () {
+      let temp = this.$route.params.id
+      let articles = this.childarticles
+      let i = articles.findIndex(function (e) {
+        return (e._id === temp)
+      })
+      this.pos = i
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      // react to route changes...
+      this.getArticle()
+    }
+  },
+  created () {
+    this.getArticle()
   }
 }
 </script>

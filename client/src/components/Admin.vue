@@ -17,14 +17,14 @@
           <td>{{ article.title }}</td>
           <td>DDMMYY HHMMSS</td>
           <td>
-            <button class="btn btn-link btn-xs" data-toggle="modal" data-target="#edit" @click="getId(article.id)" ><span class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-link btn-xs" data-toggle="modal" data-target="#edit" @click="getId(article._id)" ><span class="glyphicon glyphicon-pencil"></span></button>
             <!-- <a href="#" class="btn btn-link btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> -->
-            <button class="btn btn-link btn-xs" @click="delId(article.id)"><span class="glyphicon glyphicon-trash"></span></button >
+            <button class="btn btn-link btn-xs" @click="delId(article._id)"><span class="glyphicon glyphicon-trash"></span></button >
           </td>
         </tr>
       </tbody>
     </table> 
-    <editpost :editarticle="article" @new-article="editArticleHandle"/>
+    <editpost :editarticle="articl" @new-article="editNewArticleHandle"/>
   </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
     return {
       msg: 'Admin Dashboard',
       articles: [],
-      article: ''
+      articl: ''
     }
   },
   components: {
@@ -51,21 +51,25 @@ export default {
     },
     getId (id) {
       let article = this.articles.find(function (e) {
-        return e.id === id
+        return e._id === id
       })
-      this.article = article
+      this.articl = article
     },
     editNewArticleHandle (payload) {
-      console.log(payload)
+      let i = this.articles.findIndex(function (e) {
+        return e._id === payload._id
+      })
+      this.articles.splice(i, 1, payload)
     },
     delId (id) {
-      axios.delete('http://localhost:3000/articles/' + id)
+      axios.delete('http://localhost:3000/api/blog/' + id, {
+        headers: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhMWJiNGQ4ZTUwOWZmNzNkYTU3YzYzNiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MTE3Njc5OTl9.3rE7sD-fCk9kWgxdXftyGfEqdNEL2lHHgen-mjkPa5U'}
+      })
       .then(result => {
-        console.log(result)
-        let article = this.articles.findIndex(function (e) {
-          return e.id === id
+        let i = this.articles.findIndex(function (e) {
+          return e._id === id
         })
-        this.articles.splice(article, 1)
+        this.articles.splice(i, 1)
         alert('Success delete')
       })
       .catch(err => {
@@ -75,9 +79,9 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:3000/articles')
+    axios.get('http://localhost:3000/api/blog')
     .then(result => {
-      this.articles = result.data
+      this.articles = result.data.blogPost
     })
     .catch(err => {
       console.log(err)

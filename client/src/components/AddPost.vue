@@ -56,16 +56,18 @@ export default {
   },
   methods: {
     postArticle () {
-      axios.post('http://localhost:3000/articles', {
+      axios.post('http://localhost:3000/api/blog', {
         title: this.title,
-        content: this.content
+        article: this.content
+      }, {
+        headers: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhMWJiNGQ4ZTUwOWZmNzNkYTU3YzYzNiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MTE3Njc5OTl9.3rE7sD-fCk9kWgxdXftyGfEqdNEL2lHHgen-mjkPa5U'}
       })
       .then((response) => {
         alert('Success Added')
         let obj = {
-          id: response.data.id,
-          title: response.data.title,
-          content: response.data.content
+          _id: response.data.blogPost._id,
+          title: response.data.blogPost.title,
+          article: response.data.blogPost.article
         }
         this.$emit('new-article', obj)
         this.title = ''

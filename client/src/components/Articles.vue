@@ -2,8 +2,8 @@
   <div class="col-md-9">
     <div class="article" v-for="article in childarticles">
       <h2>{{ article.title }}</h2>
-      <h6>dd:mm:yy hh:mm:ss</h6>
-      <p>{{ article.content }}</p>
+      <!-- <h6>dd:mm:yy hh:mm:ss</h6> -->
+      <p>{{ article.article }}</p>
     </div>
   </div>
 </template>

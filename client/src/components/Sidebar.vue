@@ -5,7 +5,7 @@
         List Articles
       </router-link>
       <span v-for="article in childarticles">
-        <router-link :to="{ path: '/blog/' + article.id }" class="list-group-item">
+        <router-link :to="{ path: '/blog/' + article._id }" class="list-group-item">
           {{ article.title }}
         </router-link>
       </span>

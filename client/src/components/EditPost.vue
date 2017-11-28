@@ -18,19 +18,19 @@
                 <div class="form-group">
                   <label for="title" class="col-lg-2 control-label">Title</label>
                   <div class="col-lg-10">
-                    <input class="form-control" id="title" placeholder="Title" type="text" :value="editarticle.title">
+                    <input v-model="editarticle.title" class="form-control" id="title" placeholder="Title" type="text">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="textArea" class="col-lg-2 control-label">Content</label>
                   <div class="col-lg-10">
-                    <textarea class="form-control" rows="3" id="textArea">{{editarticle.content}}</textarea>
+                    <textarea v-model="editarticle.article" class="form-control" rows="3" id="textArea">{{editarticle.article}}</textarea>
                   </div>
                 </div>
                 <div class="form-group modal-footer">
                   <div class="col-lg-10 col-lg-offset-2">
                     <button type="reset" data-dismiss="modal" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </fieldset>
@@ -55,16 +55,18 @@ export default {
   },
   methods: {
     postArticle () {
-      axios.put('http://localhost:3000/articles/' + this.editarticle.id, {
-        title: this.title,
-        content: this.content
+      axios.put('http://localhost:3000/api/blog/' + this.editarticle._id, {
+        title: this.editarticle.title,
+        article: this.editarticle.article
+      }, {
+        headers: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhMWJiNGQ4ZTUwOWZmNzNkYTU3YzYzNiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MTE3Njc5OTl9.3rE7sD-fCk9kWgxdXftyGfEqdNEL2lHHgen-mjkPa5U'}
       })
       .then((response) => {
         alert('Success Edit')
         let obj = {
-          id: response.data.id,
-          title: response.data.title,
-          content: response.data.content
+          _id: response.data.newBlogPost._id,
+          title: response.data.newBlogPost.title,
+          article: response.data.newBlogPost.article
         }
         this.$emit('new-article', obj)
       })
@@ -73,8 +75,6 @@ export default {
         console.log(error)
       })
     }
-  },
-  created () {
   }
 }
 </script>

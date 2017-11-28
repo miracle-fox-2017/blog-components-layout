@@ -22,9 +22,9 @@ export default {
     Sidebar
   },
   created () {
-    axios.get('http://localhost:3000/articles')
+    axios.get('http://localhost:3000/api/blog')
     .then(result => {
-      this.articles = result.data
+      this.articles = result.data.blogPost
     })
     .catch(err => {
       console.log(err)
