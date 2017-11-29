@@ -8,7 +8,7 @@
             <span class="badge badge-primary badge-pill">{{ total }}</span>
           </li>
         </div>
-        <div v-for="(article, index) in allarticle" :key="index" class="panel-body">
+        <div v-for="(article, index) in article" :key="index" class="panel-body">
           <div class="list-group">
             <router-link style="text-decoration: none;" :to="article._id + '/' + article.title.split(' ').join('-')">
             <span class="list-group-item list-group-item-action">{{ article.title }}</span>
@@ -23,22 +23,11 @@
 <script>
 export default {
   name: 'Sidebar',
+  props: ['article'],
   data () {
     return {
-      allarticle: [],
-      total: ''
+      total: this.article.length
     }
-  },
-  mounted: function () {
-    this.$http.get('api/article')
-    .then(response => {
-      this.allarticle.push(...response.data)
-      this.total = this.allarticle.length
-      // this.allarticle = data
-      console.log(this.allarticle.length)
-    }).catch(err => {
-      console.log(err)
-    })
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <b-col style="padding-bottom:13%;" cols="12" md="8">
     <b-row>
-      <div class="card-margin" v-for="(article, index) in allarticle" :key="index">
+      <div class="card-margin" v-for="(article, index) in article" :key="index">
         <b-card-group>
             <b-card v-bind:title="article.title"
                   v-bind:img-src="article.img"
@@ -28,21 +28,7 @@
 
 export default {
   name: 'MainContent',
-  data () {
-    return {
-      allarticle: []
-    }
-  },
-  mounted: function () {
-    this.$http.get('api/article')
-    .then(response => {
-      this.allarticle.push(...response.data)
-      // this.allarticle = data
-      console.log(this.allarticle)
-    }).catch(err => {
-      console.log(err)
-    })
-  }
+  props: ['article']
 }
 </script>
 

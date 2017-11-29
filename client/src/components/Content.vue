@@ -2,8 +2,8 @@
 
   <b-container class="content" >
     <b-row class="container">
-      <Sidebar></Sidebar>
-      <router-view></router-view>
+      <Sidebar :article="allarticle"/>
+      <router-view :article="allarticle"/>
     </b-row>
   </b-container>
 
@@ -18,6 +18,21 @@ export default {
   components: {
     MainContent,
     Sidebar
+  },
+  data () {
+    return {
+      allarticle: []
+    }
+  },
+  mounted: function () {
+    this.$http.get('api/article')
+    .then(response => {
+      this.allarticle.push(...response.data)
+      // this.allarticle = data
+      console.log(this.allarticle)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
 </script>
