@@ -22,7 +22,13 @@ getAll = (req, res) => {
 }
 
 post = (req, res) => {
-  Article.create(req.body)
+  let newArticle = {
+    title: req.body.title,
+    content: req.body.content,
+    author: req.userLogin.username,
+    category: req.body.category
+  }
+  Article.create(newArticle)
   .then(response => {
     let status = {
       status: 'success',
@@ -31,6 +37,7 @@ post = (req, res) => {
     res.status(200).send(status)
   })
   .catch(err => {
+    console.log(err)
     res.status(500).send(err)
   })
 }

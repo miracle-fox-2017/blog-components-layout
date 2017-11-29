@@ -9,10 +9,10 @@
           <router-link to="/admin/articles/post" class="ui primary button">
             Add New
           </router-link>
-          <div class="ui green button">
+          <div class="ui green button" @click="editArticle">
             Edit
           </div>
-          <div class="ui negative button">
+          <div class="ui negative button" @click="removeArticle">
             Delete
           </div>
         </div>
@@ -31,7 +31,7 @@
             <tr v-for="(article,i) in articles" :key="i">
               <td>
                 <div class="ui checkbox">
-                  <input name="example" type="checkbox" :value="article._id">
+                  <input name="example" type="checkbox" :value="article._id" v-model="checkArticles">
                   <label>{{article.title}}</label>
                 </div>
               </td>
@@ -51,7 +51,8 @@ export default {
   name: 'BlogAdminContent',
   data () {
     return {
-      articles: {}
+      articles: {},
+      checkArticles: []
     }
   },
   methods: {
@@ -61,6 +62,24 @@ export default {
         this.articles = data
       })
       .catch((err) => console.log(err))
+    },
+    removeArticle () {
+      this.checkArticles.forEach(a => {
+        this.$http.delete('/articles/' + a, {
+          headers: {
+            token: localStorage.getItem('token')
+          }
+        })
+        .then(({data}) => {
+          var i = this.articles.map(article => { return article._id }).indexOf(a)
+          console.log(i)
+          this.articles.splice(i, 1)
+        })
+        .catch(err => console.log(err))
+      })
+    },
+    editArticle () {
+      this.$router.push('/admin/articles/edit/' + this.checkArticles[0])
     }
   },
   mounted () {

@@ -6,6 +6,7 @@ import BlogContent from '@/components/BlogContent'
 import BlogArticle from '@/components/BlogArticle'
 import BlogAdminDashboard from '@/components/BlogAdminDashboard'
 import BlogArticlePost from '@/components/BlogArticlePost'
+import BlogArticleEdit from '@/components/BlogArticleEdit'
 import BlogAdminContent from '@/components/BlogAdminContent'
 
 Vue.use(Router)
@@ -14,11 +15,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'BlogHome',
       component: BlogHome,
       children: [
         {
           path: '',
+          name: 'BlogContent',
           component: BlogContent
         },
         {
@@ -35,7 +36,6 @@ export default new Router({
     },
     {
       path: '/admin',
-      name: 'BlogAdminDashboard',
       component: BlogAdminDashboard,
       beforeEnter: (to, from, next) => {
         if (localStorage.getItem('token')) {
@@ -54,6 +54,12 @@ export default new Router({
           path: 'articles/post',
           name: 'BlogArticlePost',
           component: BlogArticlePost
+        },
+        {
+          path: 'articles/edit/:id',
+          name: 'BlogArticleEdit',
+          component: BlogArticleEdit,
+          props: true
         }
       ]
     },
