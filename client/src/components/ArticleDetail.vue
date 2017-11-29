@@ -3,7 +3,7 @@
         <div class="col-md-offset-2">
            <h1> {{ article.title }} </h1>
            <article><p>{{ article.desc }}</p></article>
-           <a class="btn btn-blog pull-right marginBottom10" href="#">READ MORE</a> 
+           <a class="btn btn-blog pull-right marginBottom10" :href="`${article.link}`">READ MORE</a> 
            <div class="col-md-12 gap10"></div>
         </div>
 </div>        
@@ -21,7 +21,7 @@ export default {
     getArticle (id) {
       this.$axios.get(`/article/${id}`)
       .then(response => {
-        this.article = response.data
+        this.article = response.data[0]
         console.log("DETAILL", this.article)
       })
       .catch((err) => {

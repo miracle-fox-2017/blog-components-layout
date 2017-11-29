@@ -1,20 +1,65 @@
 <template>
 <div class="container">
-      <!-- <div class="col-md-offset-0"> -->
+  <form @submit.prevent="editArticle">
+    <h2>{{ article.title }}</h2>
+    <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input v-model="author" type="text" name="author" :placeholder="article.author" class="form-control" 
+            id="author">
+          </div>
+        </div>
+      <!--  col-md-6   -->
 
- <!--        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add new Article </button> -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input  v-model="title" type="text" name="title" :placeholder="article.title" class="form-control" 
+            id="title">
+          </div>
+        </div>
+      <!--  col-md-6   -->
+    </div>
 
-          <!-- Modal -->
-    <!--       <div class="modal fade" id="editModal" role="dialog">
-            <div class="modal-dialog"> -->
-            
-              <!-- Modal content-->
-  <!--             <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Add new Article</h4>
-                </div> -->
-                <form>                  
+      <!--  col-md-6   -->
+    <div class="row">  
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="year">Year Publish </label>
+          <input v-model="year" type="text" name="year" :placeholder="article.year" class="form-control" 
+          id="year">
+        </div>
+
+      </div>
+
+      <!--  col-md-6   -->
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="link">Url Link </label>
+          <input v-model="link" type="text" name="link" :placeholder="article.link" class="form-control" 
+          id="link">
+        </div>
+
+      </div>      
+    </div>
+      
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="desc">Description</label>
+          <textarea v-model="desc" :placeholder="article.desc" class="form-control" id="desc"> </textarea>
+        </div>
+
+      </div>
+    </div>  
+    <!--  row   -->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div> 
+               <!--  <form>                  
                   <table class="col-md-offset-4">
                       <tr>                        
                           <td>Author</td>   
@@ -52,17 +97,9 @@
                         <td> <router-link to="/admin"> <button @click="editArticle" type="submit" value="submit">submit</button> </router-link> </td>
                       </tr>                                                                             
                   </table>                                                  
-                </form>                                                            
-<!--                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-              
-            </div>
-          </div>
+                </form>           -->                                                  
 
-      </div> -->
-</div>        
+<!-- </div>   -->      
 </template>
 
 <script>
@@ -88,9 +125,10 @@ export default {
         'link' : this.link
       })
       .then(response => {
+        console.log("ini old data",response.data)
         this.$emit('update-article', {
-          oldData : response.oldData,
-          newData : response.newData
+          oldData : response.data.oldArticle,
+          newData : response.data.newArticle
         })
       })
       .catch(err => {
@@ -101,7 +139,7 @@ export default {
     getArticle (id) {
       this.$axios.get(`/article/${id}`)
       .then(response => {
-        this.article = response.data
+        this.article = response.data[0]
       })
       .catch((err) => {
         console.log(err)

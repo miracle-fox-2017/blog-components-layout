@@ -1,12 +1,7 @@
 <template>
     <div class="container">
-        <addArticle :articles="articles" @update-article="updateArticle"/>
-<!--           <div id="blog" class="row">
-            <div class="col-md-2 pull-right"> -->
-              <!-- <showList :articles="articles"/>    -->
-<!--             </div>           
-          </div> -->
-        <router-view :articles="articles" @update-article="updateArticle"/>  
+        <addArticle :articles="articles" @addArticle="addArticle" @deleteArticle="deleteArticle" @update-article="updateArticle"/>
+        <router-view :articles="articles" @addArticle="addArticle" @deleteArticle="deleteArticle" @update-article="updateArticle"/>  
     </div>
 </div>
 </template>
@@ -35,31 +30,29 @@ export default {
       })
     },
     updateArticle: function(payload) {
-      if(payload.deleteArticle){
+        this.articles.forEach((article, index) => {
+          if(article._id == payload.oldData._id){
+            this.articles.splice(index,1,payload.newData)
+            // this.getAllArticles();
+            this.$router.push({ name: 'Admin' })
+          }
+        })
+    },
 
+    addArticle: function(payload) {
+        if(payload.addArticle){
+          this.articles.push(payload.addArticle);
+          this.$router.push({ name: 'Admin' })
+        }
+    },
+
+    deleteArticle: function(payload) {
         this.articles.forEach((article, index) => {
           if(article._id == payload.deleteArticle._id){
             this.articles.splice(index,1)
             this.getAllArticles();
           }
         })
-
-      }
-
-      if(payload.newData){
-        this.articles.forEach((article, index) => {
-          if(article._id == payload.oldData._id){
-            this.articles.splice(index,1,payload.newData)
-            this.getAllArticles();
-          }
-        })
-      }
-
-
-      if(payload.addArticle){
-        this.articles.push(payload.addArticle);
-        this.getAllArticles();
-      }
     }
   },
   created () {

@@ -50,7 +50,7 @@
                       <div class="whitespace">                    
                       </div>                    
                       <tr>
-                        <td> <router-link to="/"> <button @click="createArticle" type="submit" value="submit">submit</button> </router-link> </td>
+                        <td> <router-link to="/"> <button @click="createArticle" data-dismiss="modal" type="submit" value="submit">submit</button> </router-link> </td>
                       </tr>                                                                             
                   </table>                                                  
                 </form>                                                            
@@ -84,12 +84,13 @@ export default {
         author : this.author,
         title : this.title,
         desc : this.desc,
-        year : this.year
+        year : this.year,
+        link : this.link
       })
     .then(result => {
   
       console.log(result);
-      this.$emit('update-article', {
+      this.$emit('addArticle', {
         addArticle : result.data
       })   
     })  

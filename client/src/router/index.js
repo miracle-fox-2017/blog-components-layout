@@ -26,6 +26,7 @@ export default new Router({
           [
             {
               path: '',
+              name: 'Blog',
               component: BlogArticle
             },    
             {
@@ -42,6 +43,7 @@ export default new Router({
         [
           {
             path: '',
+            name: 'Admin',
             component: showList
           },
           {

@@ -1,12 +1,6 @@
 <template>
 <div class="container">
-        <h1>Has Been Remove this Article </h1>
-        <div class="col-md-offset-2">
-           <h1> {{ article.title }} </h1>
-           <article><p>{{ article.desc }}</p></article>
-           <a class="btn btn-blog pull-right marginBottom10" href="#">READ MORE</a> 
-           <div class="col-md-12 gap10"></div>
-        </div>
+        <h1>{{ article.title }} Has Been Remove this Article </h1>
 </div>        
 </template>
 
@@ -23,7 +17,7 @@ export default {
       this.$axios.delete(`/article/${id}`)
       .then(response => {
         this.article = response.data
-        this.$emit('update-article', {
+        this.$emit('deleteArticle', {
           deleteArticle : response.data
         })
       })

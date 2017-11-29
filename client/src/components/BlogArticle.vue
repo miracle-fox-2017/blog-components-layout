@@ -3,7 +3,6 @@
         <div class="col-md-offset-2"  v-for="article in articles">
            <h1> {{ article.title }} </h1>
            <article><p>{{ article.desc }}</p></article>
-           <a class="btn btn-blog pull-right marginBottom10" href="#">READ MORE</a> 
            <div class="col-md-12 gap10"></div>
         </div>
 </div>        
