@@ -5,20 +5,17 @@
     <div class="container">
       <header class="clearfix">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand"> <router-link :to="`/`">AzharieNote</router-link></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav mr-auto" style="">
+              <li class="nav-item">
+                <p><router-link v-bind:to="`/blog`">Blog</router-link></p>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <p><router-link v-bind:to="`/Posting`">Posting</router-link></p>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
@@ -54,5 +51,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+ul, li {
+  list-style: none;
+  margin-right: 0.5rem;
 }
 </style>

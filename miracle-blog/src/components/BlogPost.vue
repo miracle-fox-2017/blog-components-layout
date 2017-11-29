@@ -1,50 +1,55 @@
 <template>
   <div>
     <main role="main">
-      <div class="jumbtron" id="headline">
-        <div>
-          <h1 class="display-3"> {{ headline.title }}</h1>
-          <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam dolores doloribus<br>
-            est dolor deleniti amet id placeat, ex ab, eius. Consequuntur imped<br>
-            it quis dolorum consectetur accusa
-          </p>
-          <p>{{ headline.author }}</p>
-          <p><router-link v-bind:to="`/blog/article/${headline._id}`">Read More</router-link></p>
+      <div>
+        <div class="jumbtron" id="headline">
+          <div>
+            <h3>Popular On </h3>
+            <h1 class="display-3"> {{ headline.title }}</h1>
+            <p class="lead">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam dolores doloribus<br>
+              est dolor deleniti amet id placeat, ex ab, eius. Consequuntur imped<br>
+              it quis dolorum consectetur accusa
+            </p>
+            <p>{{ headline.author }}</p>
+            <p><router-link :to="`/blog/article/${headline._id}`"  @click="readMore">Read More</router-link></p>
+          </div>
         </div>
-      </div>
-      <div class="row marketing">
-        <div class="col-lg-6">
-            <p>goisrgoi</p>
-        </div>
-        <div class="col-lg-6">
-          <div class="card" style="width: 20rem;" v-for="article in posts">
-            <img class="card-img-top" :src=article.img  style="width: 55rem; height: 28rem;"alt="Card image cap">
-            <div class="card-body" style="width: 55rem">
-              <h4 class="card-title">{{ article.title }}</h4>
-              <p class="card-text">{{ article.graf }}</p>
-              <p class="card-text">{{ article.author }}</p>
-              <p><router-link v-bind:to="`/blog/article/${article._id}`">Read More</router-link></p>
-            </div>
+        <div class="row marketing">
+          <div class="col-lg-3">
+            <div class="card" style="width: 100%;">
+              <h2>Recent Posts</h2>
+                <div class="card-body">
+                  <ul class="list-group" v-for="article in posts">
+                    <li class="list-group-item"><router-link :to="`/blog/article/${article._id}`">{{ article.title }}</router-link></li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-9">
+              <router-view/>
           </div>
         </div>
       </div>
-      <div class="content">
-        <router-view/>
-      </div>
     </main>
+
   </div>
 </template>
 
 <script>
   import axios from 'axios'
+  import SideBar from './SideBar.vue'
 
   export default {
     name: 'BlogPost',
+    components: {
+      SideBar
+    },
     data () {
       return {
         headline: '',
-        posts: []
+        posts: [],
+        read: false
       }
     },
     created: function () {

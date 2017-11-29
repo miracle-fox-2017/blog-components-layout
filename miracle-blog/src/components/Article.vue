@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>{{ article.title }}</h1>
-    <img :src="article.img" alt="foo">
-    <p>{{ article.article }}</p>
+    <img :src="article.img" style="width:100%" alt="foo">
+    <p style="text-align: justify">{{ article.article }}</p>
   </div>
 </template>
 
@@ -16,14 +16,24 @@
         article: ''
       }
     },
-    created: function () {
-      axios.get(`http://localhost:4000/api/blog/${this.id}`)
-      .then(response => {
-        this.article = response.data[0]
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    methods: {
+      getArticleDetail (id) {
+        axios.get(`http://localhost:4000/api/blog/${id}`)
+        .then(response => {
+          this.article = response.data[0]
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
+    },
+    mounted () {
+      this.getArticleDetail(this.id)
+    },
+    watch: {
+      id (newId) {
+        this.getArticleDetail(newId)
+      }
     }
   }
 </script>
