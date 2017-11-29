@@ -2,7 +2,7 @@
   <b-navbar class="sticky-top" toggleable="md" type="dark" variant="success">
 
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-    <b-navbar-brand style="margin-left: 2%;" href="#">MyBlog</b-navbar-brand>
+    <b-navbar-brand style="margin-left: 2%;" href="/">MyBlog</b-navbar-brand>
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav>
@@ -22,8 +22,8 @@
           <template slot="button-content">
             <span>User</span>
           </template>
-          <b-dropdown-item href="#">Register</b-dropdown-item>
-          <b-dropdown-item href="#">Login</b-dropdown-item>
+          <b-dropdown-item href="/register">Register</b-dropdown-item>
+          <b-dropdown-item href="/login">Login</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 

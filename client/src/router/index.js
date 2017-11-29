@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import MainContent from '@/components/MainContent'
 import DetailArticle from '@/components/DetailArticle'
+import LoginPage from '@/components/LoginPage'
+import RegisterPage from '@/components/RegisterPage'
 /* eslint-disable */
 import '@/assets/js/sticky-sidebar.js'
 
@@ -24,11 +26,14 @@ export default new Router({
           props: true
         }
       ]
+    },
+    {
+      path: '/login',
+      component: LoginPage
+    },
+    {
+      path: '/register',
+      component: RegisterPage
     }
-    // {
-    //   path: '/blog/:id/:title',
-    //   component: DetailArticle,
-    //   props: true
-    // }
   ]
 })
