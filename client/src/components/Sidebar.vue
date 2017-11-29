@@ -5,12 +5,12 @@
         <div class="panel-heading">
           <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-success">
             Last Article
-            <span class="badge badge-primary badge-pill">{{ total }}</span>
+            <span class="badge badge-primary badge-pill">{{ total[0] }}</span>
           </li>
         </div>
         <div v-for="(article, index) in article" :key="index" class="panel-body">
           <div class="list-group">
-            <router-link style="text-decoration: none;" :to="article._id + '/' + article.title.split(' ').join('-')">
+            <router-link style="text-decoration: none;" :to="'/' + article._id + '/' + article.title.split(' ').join('-')">
             <span class="list-group-item list-group-item-action">{{ article.title }}</span>
             </router-link>
         </div>
@@ -26,8 +26,16 @@ export default {
   props: ['article'],
   data () {
     return {
-      total: this.article.length
+      total: []
     }
+  },
+  methods: {
+    theLastArticle () {
+      this.total.push(this.article.length)
+    }
+  },
+  mounted () {
+    this.theLastArticle()
   }
 }
 </script>

@@ -36,6 +36,11 @@ export default {
   },
   mounted () {
     this.detailArticle(this.id)
+  },
+  watch: {
+    id: function (newID) {
+      this.detailArticle(newID)
+    }
   }
 }
 </script>
