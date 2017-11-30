@@ -5,14 +5,14 @@
          <div class="card">
           <div class="card-block">
             <h3 class="card-title">Azharie's Note</h3>
-            <button id="signup">SIGN UP</button>
+            <router-link :to="`/register/signup`" ><button id="signup">SIGN UP</button></router-link>
             <p class="separator">--- Already have Account ? ---</p>
-            <button id="login">LOG IN</button>
+            <router-link :to="`/register/signin`"><button id="login">LOG IN</button></router-link>
           </div>
         </div>
       </div>
       <div class="col-lg-8">
-
+        <router-view/>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-
+  name: 'Register'
 }
 </script>
 

@@ -12,7 +12,7 @@
               it quis dolorum consectetur accusa
             </p>
             <p>{{ headline.author }}</p>
-            <p><router-link :to="`/blog/article/${headline._id}`"  @click="readMore">Read More</router-link></p>
+            <p><router-link :to="`/blog/article/${headline._id}`">Read More</router-link></p>
           </div>
         </div>
         <div class="row marketing">
@@ -47,6 +47,10 @@
         posts: [],
         read: false
       }
+    },
+    beforeCreate: function () {
+      let token = localStorage.getItem('token')
+      return (token) ? console.log('hurray') : console.log('booo')
     },
     created: function () {
       axios.get(`http://localhost:4000/api/blog`)

@@ -5,6 +5,8 @@ import BlogPost from '@/components/BlogPost'
 import Article from '@/components/Article'
 import WriteNewArticle from '@/components/WriteNewArticle'
 import Register from '@/components/Register'
+import SignUp from '@/components/SignUp'
+import SignIn from '@/components/SignIn'
 Vue.use(Router)
 
 export default new Router({
@@ -36,7 +38,19 @@ export default new Router({
     {
       path: '/register',
       name: 'register',
-      component: Register
+      component: Register,
+      children: [
+        {
+          path: 'signup',
+          name: 'signup',
+          component: SignUp
+        },
+        {
+          path: 'signin',
+          name: 'signin',
+          component: SignIn
+        }
+      ]
     }
   ]
 })
