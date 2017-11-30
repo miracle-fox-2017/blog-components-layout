@@ -1,8 +1,17 @@
 <template>
-  <div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar" v-for="post in posts">
-      <li><router-link :to="`/blog/${post._id}`">{{post.title}}</router-link></li>
-    </ul>
+  <div class="col-md-4">
+    <div class="card card-primary">
+      <div class="card-header">
+        Last Article
+      </div>
+      <div class="card-body">
+        <div class="list-group">
+          <div class="" v-for="post in posts">
+            <p><router-link :to="`/blog/${post._id}`">{{post.title}}</router-link></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

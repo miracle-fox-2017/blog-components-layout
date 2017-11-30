@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row content">
       <side :posts="article"></side>
-      <router-view></router-view>
+      <router-view :posts="article"></router-view>
     </div>
   </div>
 </template>

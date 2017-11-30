@@ -1,9 +1,15 @@
 <template>
-  <div class="col-sm-9 col-lg-9">
-    <div class="thumbnail text-left">
-      <img :src="articles.urlimg" alt="">
-      <h4>{{articles.title}}</h4>
-      <p>{{articles.description}}</p>
+  <div class="col-md-8">
+    <h2>{{ articles.title }}</h2>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <img :src="articles.urlimg" class="img-responsive"/>
+      </div>
+    </div>
+    <div class="row">
+      <div id="article-content" class="col-md-12">
+        <p>{{ articles.description }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +31,6 @@ export default {
       this.$http.get('/api/articles/' + artikelid)
         .then((response) => {
           this.articles = response.data
-          console.log(response.data)
         })
         .catch(function (error) {
           console.log(error)
@@ -46,5 +51,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
+img {
+  width: 400px;
+  margin-left: 40%;
+}
 </style>

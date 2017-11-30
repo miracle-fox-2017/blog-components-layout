@@ -1,27 +1,22 @@
 <template>
   <div class="">
-    <div class="container-fluid" id="section1">
+    <div class="container" id="section1">
       <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
-
-          <h2 class="sub-header">Section title</h2>
+          <h2 class="sub-header">List Article</h2>
           <div class="table-responsive">
             <table class="table table-stripe">
               <tr>
                 <th>title</th>
-                <th>url image</th>
-                <th>delete</th>
-                <th>edit</th>
+                <th>description</th>
               </tr>
               <tr v-for="(article, index) in articles">
                 <td>{{article.title}}</td>
-                <td>{{article.urlimg}}</td>
-                <td><button type="button" name="button" v-on:click="deleteArticle(index, article._id)">delete</button></td>
-                <td><button type="button" name="button" v-on:click="onEdit(index)" data-toggle="modal" data-target="#myModal">edit</button></td>
+                <td>{{article.description.substring(0, 50)}}...</td>
+                <td><button class="btn btn-secondary" type="button" name="button" v-on:click="deleteArticle(index, article._id)">delete</button><button class="btn btn-secondary" type="button" name="button" v-on:click="onEdit(index)" data-toggle="modal" data-target="#myModal">edit</button></td>
               </tr>
             </table>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Article</button>
           </div>
         </div>
       </div>
@@ -61,8 +56,6 @@
 
       </div>
     </div>
-
-
   </div>
 <!-- <input type="text" name="title" id="title" ref="title">
 <input type="text" name="description" id="description" ref="description">
@@ -175,6 +168,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-
+<style scoped>
+  button{
+    margin-right: 20px;
+  }
 </style>
