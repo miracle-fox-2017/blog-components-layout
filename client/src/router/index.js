@@ -8,7 +8,7 @@ import ShowName from '@/components/ShowName'
 import AdminIndex from '@/components/AdminIndex'
 import BlogItemAdmin from '@/components/BlogItemAdmin'
 import UserItemAdmin from '@/components/UserItemAdmin'
-
+import GameBoard from '@/components/GameBoard'
 
 Vue.use(Router)
 
@@ -49,6 +49,11 @@ export default new Router({
           component: UserItemAdmin
         }
       ]
+    },
+    {
+      path: '/game',
+      name: 'Game Area',
+      component: GameBoard,
     }
   ]
 })

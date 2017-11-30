@@ -11,7 +11,7 @@
 						</div>
 					</div>
 
-					<sidebar :posts="articles"></sidebar>
+					<sidebar :posts="this.articles"></sidebar>
 				</div>
 			</div>
 		</main>
@@ -20,30 +20,46 @@
 
 <script>
 	import Sidebar from '@/components/Sidebar';
+	import { mapActions, mapState } from 'vuex'
 
 	export default {
 		name: 'BlogIndex',
 		components: {
 			Sidebar
 		},
-		data () {
+
+		data() {
 			return {
-				articles: [],
+
 			}
 		},
-		methods: {
-			getArticles() {
-				this.$http.get('/api/articles')
-					.then(articles => {
-						this.articles = articles.data;
 
-					}).catch(err => console.log(err.message));
-			},
+		methods: {
+			...mapActions ([
+				'getArticles'
+			]),
 
 		},
+
 		created() {
-			this.getArticles();
+			this.getArticles()
+		},
+
+		computed: {
+			set: (articles) => {
+				this.articles = articles;
+			},
+
+			...mapState ([
+				'articles'
+			])
 		}
+
+		/*computed: {
+			articles () {
+				return this.$store.state.articles
+			}
+		}*/
 	}
 </script>
 
