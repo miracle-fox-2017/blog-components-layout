@@ -4,6 +4,7 @@ import MainPage from '@/components/MainPage'
 import DetailPage from '@/components/DetailPage'
 import MainBlog from '@/components/MainBlog'
 import Login from '@/components/Login'
+import EditPost from '@/components/EditPost'
 
 Vue.use(Router)
 
@@ -29,6 +30,12 @@ export default new Router({
           path: '',
           name: 'MainPage',
           component: MainPage
+        },
+        {
+          path: '/main_content/edit/:contentId',
+          name: 'EditPost',
+          component: EditPost,
+          props: true
         }
       ]
     }

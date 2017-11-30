@@ -84,7 +84,7 @@ let verifyAdmin = function(req,res,next){
 // Role verification (by id)
 let verifyById = function(req,res,next){
   let dataDecoded = req.header.decode
-  if(dataDecoded.id == req.params.id || dataDecoded.role === 'admin'){
+  if(dataDecoded.id == req.params.idUser || dataDecoded.role === 'admin'){
     next()
   }
   else{

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card">
-      <h4 class="card-header">Post Something!</h4>
+      <div class="card-header">Edit Post</div>
       <div class="card-body">
         <form>
           <div class="form-group">
@@ -12,7 +12,7 @@
             <label for="inputContent">Description / Content</label>
             <input type="text" rows="5" class="form-control" id="postContent" placeholder="Description" v-model="content">
           </div>
-          <button type="submit" class="btn btn-success" @click="newPost" >POST</button>
+          <button type="submit" class="btn btn-success" @click="postEdit">POST</button>
         </form>
       </div>
     </div>
@@ -21,43 +21,31 @@
 
 <script>
   export default {
-    name: 'Post',
+    name: 'EditPost',
+    props: ['blogs', 'fromDetail'],
     data () {
       return {
-        title: '',
+        title: this.fromDetail.title,
         idUser: '',
-        content: '',
-        dataPost: []
+        content: this.fromDetail.content,
+        editedPost: {}
       }
     },
     methods: {
-      newPost () {
-        this.$axios.post(`http://localhost:3000/articles`, {
+      postEdit () {
+        let data = localStorage.getItem('dataLogin')
+        let dataParse = JSON.parse(data)
+        this.idUser = dataParse.id
+        this.$axios.put(`http://localhost:3000/articles/${this.idUser}/${this.fromDetail._id}`, {
           title: this.title,
-          idUser: this.idUser,
           content: this.content
         }).then((response) => {
-          this.dataPost = response.data
-          this.$emit('getDat', {
-            list: this.dataPost
+          this.editedPost = response.data
+          this.$emit('send-data-edit', {
+            list: this.editedPost
           })
-        }).catch((err) => {
-          console.log(err)
         })
       }
-    },
-    created: function () {
-      let data = localStorage.getItem('dataLogin')
-      let dataParse = JSON.parse(data)
-      this.idUser = dataParse.id
     }
   }
 </script>
-
-<style scoped>
-.container {
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 1em;
-}
-</style>

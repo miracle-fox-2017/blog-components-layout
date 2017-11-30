@@ -40,7 +40,7 @@ let postNewArticle = function(req,res){
 let removeArticle = function(req,res){
   Blog.findOneAndRemove(
     {
-      _id: req.params.id
+      _id: req.params.idPost
     }
   ).then(function(dataArticles){
     res.status(200).send(dataArticles)
@@ -53,7 +53,7 @@ let removeArticle = function(req,res){
 let updateArticle = function(req,res){
   Blog.findOneAndUpdate(
     {
-      _id: req.params.id
+      _id: req.params.idPost
     },
     {
       title: req.body.title,

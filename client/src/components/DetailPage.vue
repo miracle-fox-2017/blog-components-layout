@@ -8,6 +8,9 @@
               <h4 class="card-title">{{detailBlog.title}}</h4>
               <p class="card-text">{{detailBlog.content}}</p>
               <p class="card-text">{{detailBlog.createdAt}}</p>
+              <router-link :to="`/main_content/edit/${detailBlog._id}`">
+                <button class="btn btn-primary" type="button" name="button" @click="sendData">Edit This Post</button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -31,14 +34,19 @@
         .then((response) => {
           this.detailBlog = response.data
         })
+      },
+      sendData () {
+        this.$emit('passData', {
+          list: this.detailBlog
+        })
       }
     },
     created: function () {
       this.getArticlesDetails(this.contentId)
     },
     watch: {
-      contentId (contentId) {
-        this.contentId = contentId
+      contentId (newId) {
+        this.contentId = newId
         this.getArticlesDetails(this.contentId)
       }
     }

@@ -3,7 +3,7 @@
     <!-- Rendering blog posts -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-5" v-for="blog in blogs">
+        <div class="col-md-5" v-for="(blog, index) in blogs">
           <div class="card bg-dark text-white">
             <div class="card-img-overlay">
               <router-link :to="`/main_content/${blog._id}`">
@@ -12,6 +12,7 @@
               <p class="card-text">{{blog.content}}</p>
               <p class="card-text">{{blog.createdAt}}</p>
               <p class="card-text">{{blog.user.first_name}}</p>
+              <button class="btn btn-danger" type="button" name="button" @click="dataDelete(blog,index)">Delete this post</button>
             </div>
           </div>
         </div>
@@ -23,7 +24,15 @@
 <script>
 export default {
   name: 'MainPage',
-  props: ['blogs']
+  props: ['blogs'],
+  methods: {
+    dataDelete (blog, index) {
+      this.$emit('sendDataDelete', {
+        list: blog,
+        idx: index
+      })
+    }
+  }
 }
 </script>
 
