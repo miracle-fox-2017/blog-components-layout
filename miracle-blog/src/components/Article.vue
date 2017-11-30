@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ article.title }}</h1>
-    <img :src="article.img" style="width:100%" alt="foo">
+    <img :src="article.img" style="width:100%" alt=photo>
     <p style="text-align: justify">{{ article.article }}</p>
   </div>
 </template>
