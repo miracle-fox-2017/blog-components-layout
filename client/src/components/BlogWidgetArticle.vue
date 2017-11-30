@@ -19,13 +19,8 @@
 </template>
 
 <script>
-import blogwidgetarticle from '@/components/BlogWidgetArticle'
-
 export default {
-  components: {
-    blogwidgetarticle
-  },
-  props: ['articles']
+  props: ['article']
 }
 </script>
 

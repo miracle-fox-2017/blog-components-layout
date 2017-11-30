@@ -6,7 +6,8 @@
     <div class="row">
       <div class="ui grid segment">
         <div class="eleven wide column">
-          <blogshortarticle v-for="(article,i) in articles" :key="i" :article="article"></blogshortarticle>
+          <router-view :articles="articles"/>
+          <!-- <blogshortarticle v-for="(article,i) in articles" :key="i" :article="article"></blogshortarticle> -->
         </div>
         <div class="five wide column large screen only">
           <blogsidebar :articles="articles"/>
@@ -17,15 +18,25 @@
 </template>
 
 <script>
-import blogsidebar from '@/components/BlogSidebar'
-import blogshortarticle from '@/components/BlogShortArticle'
 
 export default {
-  components: {
-    blogsidebar,
-    blogshortarticle
+  data () {
+    return {
+      articles: {}
+    }
   },
-  props: ['articles']
+  methods: {
+    getAllArticle () {
+      this.$http.get('/articles')
+      .then(({data}) => {
+        this.articles = data
+      })
+      .catch((err) => console.log(err))
+    }
+  },
+  mounted () {
+    this.getAllArticle()
+  }
 }
 </script>
 

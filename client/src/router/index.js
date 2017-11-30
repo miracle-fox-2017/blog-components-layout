@@ -8,6 +8,7 @@ import BlogAdminDashboard from '@/components/BlogAdminDashboard'
 import BlogArticlePost from '@/components/BlogArticlePost'
 import BlogArticleEdit from '@/components/BlogArticleEdit'
 import BlogAdminContent from '@/components/BlogAdminContent'
+import BlogShortArticle from '@/components/BlogShortArticle'
 
 Vue.use(Router)
 
@@ -20,12 +21,18 @@ export default new Router({
         {
           path: '',
           name: 'BlogContent',
-          component: BlogContent
-        },
-        {
-          path: 'article/:id',
-          component: BlogArticle,
-          props: true
+          component: BlogContent,
+          children: [
+            {
+              path: '',
+              component: BlogShortArticle
+            },
+            {
+              path: 'article/:id',
+              component: BlogArticle,
+              props: true
+            }
+          ]
         }
       ]
     },
