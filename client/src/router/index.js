@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import BlogPost from '@/components/BlogPost'
 import Article from '@/components/Article'
 import WriteNewArticle from '@/components/WriteNewArticle'
+import Register from '@/components/Register'
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +32,11 @@ export default new Router({
       path: '/posting',
       name: 'posting',
       component: WriteNewArticle
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     }
   ]
 })
