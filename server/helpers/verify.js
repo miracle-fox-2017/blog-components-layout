@@ -8,10 +8,11 @@ const isLogin = (req, res, next) => {
   console.log(token, 'idhfoshfoi');
   jwt.verify(token, secret, function(err, decoded) {
     if (!err) {
+      req.headers.id = decoded.id
       console.log(decoded);
       next()
     } else {
-      res.status(401).send('Please signin')
+      res.status(401).send({msg:'Please signin'})
     }
   })
 }

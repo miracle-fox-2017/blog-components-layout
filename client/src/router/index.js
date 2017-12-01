@@ -7,7 +7,9 @@ import WriteNewArticle from '@/components/WriteNewArticle'
 import Register from '@/components/Register'
 import SignUp from '@/components/SignUp'
 import SignIn from '@/components/SignIn'
-Vue.use(Router)
+import VueJWT from 'vuejs-jwt'
+
+Vue.use(Router, VueJWT)
 
 export default new Router({
   mode: 'history',

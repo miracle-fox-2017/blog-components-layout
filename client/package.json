@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "jsonwebtoken": "^8.1.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vue2-editor": "^2.3.11"
+    "vue2-editor": "^2.3.11",
+    "vuejs-jwt": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

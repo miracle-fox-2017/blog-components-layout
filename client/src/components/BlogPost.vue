@@ -4,14 +4,14 @@
       <div>
         <div class="jumbtron" id="headline">
           <div>
-            <h3>Popular On </h3>
+            <h3>Popular On Azharie's Note </h3>
             <h1 class="display-3"> {{ headline.title }}</h1>
             <p class="lead">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam dolores doloribus<br>
               est dolor deleniti amet id placeat, ex ab, eius. Consequuntur imped<br>
               it quis dolorum consectetur accusa
             </p>
-            <p>{{ headline.author }}</p>
+            <p>{{ headline.author.username }}</p>
             <p><router-link :to="`/blog/article/${headline._id}`">Read More</router-link></p>
           </div>
         </div>
@@ -38,15 +38,21 @@
       return {
         headline: '',
         posts: [],
-        read: false
+        read: false,
+        token: localStorage.getItem('token')
       }
     },
     beforeCreate: function () {
-      let token = localStorage.getItem('token')
-      return (token) ? console.log('hurray') : console.log('booo')
+      return (localStorage.getItem('token')) ? console.log('masukk') : this.$router.push({name: 'register'})
     },
     created: function () {
-      axios.get(`http://localhost:4000/api/blog`)
+      const jwt = require('jsonwebtoken')
+      jwt.verify(localStorage.getItem('token'), 'foobar', function (err, decoded) {
+        if (!err) {
+          localStorage.setItem('userId', decoded.id)
+        }
+      })
+      axios.get(`http://localhost:4000/api/blog`, {headers: {token: this.token}})
       .then(response => {
         console.log(response)
         this.posts = response.data

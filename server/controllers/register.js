@@ -8,11 +8,8 @@ console.log(secret);
 
 
 const signin = (req, res) => {
-  console.log('helo');
-  console.log(req.body.username);
   User.findOne({username : req.body.username})
   .then(user => {
-    console.log(user, '-0-0-0');
     if (user) {
       bcrypt.compare(req.body.password, user.password, function(err, hash) {
         if (!err) {
@@ -33,14 +30,15 @@ const signin = (req, res) => {
           res.status(404).send('Password or Email wrong')
         }
       })
-    }
+    } else {
+      res.status(404).send({ msg: 'Password or Email wrong'})
+    }    
   })
 }
 
 
 
 const signup = (req, res) => {
-  console.log('absoifhasui');
   let password = req.body.password
   bcrypt.hash(password, saltRounds, function(err, hash) {
     if (!err) {
@@ -60,7 +58,7 @@ const signup = (req, res) => {
       })
       .catch(err => {
         console.log(err);
-        res.status(200).send(err)
+        res.status(404).send(err)
       })
     }
   })

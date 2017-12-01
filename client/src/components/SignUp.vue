@@ -10,6 +10,11 @@
           <input type="submit" @click="createNewUser" value="Register" />
           </form>
         </div>
+         <div v-if="error">
+          <h4 style="color: red;">
+            {{ msg }}
+          </h4>
+        </div>
       </div>
     </div>
   </div>
@@ -22,7 +27,9 @@ export default {
     return {
       username: '',
       password: '',
-      email: ''
+      email: '',
+      error: false,
+      msg: ''
     }
   },
   methods: {
@@ -35,9 +42,11 @@ export default {
       })
       .then(response => {
         console.log(response.data)
-        this.$router.push({ path: 'signin' })
+        this.$router.push({ name: 'signin' })
       })
       .catch(err => {
+        this.error = true
+        this.msg = 'The email or password you entered is incorrect.'
         console.log(err)
       })
     }

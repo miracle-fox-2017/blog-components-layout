@@ -18,8 +18,9 @@
     },
     methods: {
       getArticleDetail (id) {
-        axios.get(`http://localhost:4000/api/blog/${id}`)
+        axios.get(`http://localhost:4000/api/blog/detail/${id}`)
         .then(response => {
+          console.log(response)
           this.article = response.data[0]
         })
         .catch(err => {

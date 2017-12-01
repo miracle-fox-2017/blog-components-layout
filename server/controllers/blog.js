@@ -2,6 +2,7 @@ const Blog = require('../models/blog-schema')
 
 const getAllBlogPosts = (req, res) => {
   Blog.find()
+  .populate('author')
   .then(posts => {
     res.status(200).send(posts)
   })
@@ -9,6 +10,19 @@ const getAllBlogPosts = (req, res) => {
     console.log(err);
   })
 }
+
+
+const getAllBlogPostsByUserId = (req, res) => {
+  Blog.find({author: req.params.userId})
+    .populate('author')
+    .then(posts => {
+      res.status(200).send(posts)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
 
 const creatBlogPost = (req, res) => {
   console.log(req.body);
@@ -72,5 +86,6 @@ module.exports = {
   creatBlogPost,
   findById,
   findByIdAndUpdate,
-  findByIdAndRemove
+  findByIdAndRemove,
+  getAllBlogPostsByUserId
 };

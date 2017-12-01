@@ -13,11 +13,14 @@ router.post('/signin', registerController.signin)
 router.post('/signup', registerController.signup)
 
 
+router.get('/blog/:userId', blogController.getAllBlogPostsByUserId)
+
 router.get('/blog', blogController.getAllBlogPosts)
+
 
 router.post('/blog', blogController.creatBlogPost)
 
-router.get('/blog/:_id', blogController.findById)
+router.get('/blog/detail/:_id', blogController.findById)
 
 router.put('/blog/:_id', blogController.findByIdAndUpdate)
 

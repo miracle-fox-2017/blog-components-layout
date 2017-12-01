@@ -9,6 +9,10 @@
           <input type="submit" @click="signIn" value="Sign In">
           </form>
         </div>
+        <div v-if="error">
+          <h4 style="color: red;">The email or password you entered is incorrect. Please try again.
+          If you’re still having trouble, reset your password.</h4>
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +25,8 @@ export default {
     return {
       username: '',
       password: '',
-      token: ''
+      token: '',
+      error: false
     }
   },
   methods: {
@@ -38,6 +43,7 @@ export default {
         this.$router.push({name: 'blog'})
       })
       .catch(err => {
+        this.error = true
         console.log(err)
       })
     }
