@@ -17,7 +17,10 @@
           <td>{{ item.title }}</td>
           <td>{{ item.article }}</td>
           <td>{{ item.graf }}</td>
-          <td><button @click="removeItem(item._id)">X</button></td>
+          <td>
+            <button @click="removeItem(item._id)">X</button>
+            <button @click="editItem(item)">Edit</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -52,6 +55,19 @@ export default {
         if (element._id === id) {
           this.listArticle.splice(index, 1)
         }
+      })
+      axios.delete(`http://localhost:4000/api/blog/${id}`)
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    editItem: function (item) {
+      console.log('masuk edit item')
+      this.$emit('edit', {
+        article: item
       })
     }
   }

@@ -20,7 +20,11 @@
 
 <script>
 export default {
-  name: 'Register'
+  name: 'Register',
+  beforeCreate: function () {
+    console.log('hello', '--=-==')
+    return (localStorage.getItem('token')) ? this.$router.push({name: 'blog'}) : console.log('hello')
+  }
 }
 </script>
 
@@ -49,5 +53,4 @@ p.separator {
   margin-bottom: 20px;
   letter-spacing: 0.4rem;
 }
-
 </style>

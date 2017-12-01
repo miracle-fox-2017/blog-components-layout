@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css">
     <div class="container">
       <header class="clearfix">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -16,6 +14,9 @@
               </li>
               <li class="nav-item">
                 <p><router-link v-bind:to="`/Posting`">Posting</router-link></p>
+              </li>
+              <li class="nav-item">
+                <a @click="logout">Logout</a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -36,7 +37,13 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    logout: function () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('userId')
+    }
+  }
 }
 </script>
 

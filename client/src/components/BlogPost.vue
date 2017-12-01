@@ -11,7 +11,7 @@
               est dolor deleniti amet id placeat, ex ab, eius. Consequuntur imped<br>
               it quis dolorum consectetur accusa
             </p>
-            <p>{{ headline.author.username }}</p>
+            <p>{{ headline.author }}</p>
             <p><router-link :to="`/blog/article/${headline._id}`">Read More</router-link></p>
           </div>
         </div>
@@ -41,9 +41,6 @@
         read: false,
         token: localStorage.getItem('token')
       }
-    },
-    beforeCreate: function () {
-      return (localStorage.getItem('token')) ? console.log('masukk') : this.$router.push({name: 'register'})
     },
     created: function () {
       const jwt = require('jsonwebtoken')
