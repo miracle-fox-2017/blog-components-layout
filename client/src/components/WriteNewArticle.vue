@@ -10,7 +10,7 @@
           <textarea id="message"  v-model="summary"  name="graf" class="span6" placeholder="Summary" rows="5"></textarea>
           <label>Content</label>
           <textarea id="message"  v-model="content"  name="article" class="span6" placeholder="Content" rows="5"></textarea>
-          <label>Img Url</label>
+          <label>Image Url</label>
           <input type="text" name="img" value="" v-model="img" placeholder="Image URL">
         </div>
         <div class="controls">

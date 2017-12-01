@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     createNewUser: function () {
-      console.log('hello')
       axios.post(`http://localhost:4000/api/signup`, {
         username: this.username,
         password: this.password,

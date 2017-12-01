@@ -1,8 +1,9 @@
 <template>
   <div>
     <h1>{{ article.title }}</h1>
-    <img :src="article.img" style="width:100%" alt=photo>
-    <p style="text-align: justify">{{ article.article }}</p>
+    <img :src="article.img" style="width:50%;" alt=photo>
+    <p>{{ article.article }}</p>
+    <p>{{ article.createdAt }}</p>
   </div>
 </template>
 
@@ -38,3 +39,10 @@
     }
   }
 </script>
+
+<style scoped>
+  p {
+    text-align: left;
+    padding-top: 20px;
+  }
+</style>

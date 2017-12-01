@@ -5,7 +5,7 @@
         <div class="form-style-6">
           <form style="padding-top: 0;" v-on:submit.prevent="signIn">
           <input type="text" v-model="username" name="field1" placeholder="Your User Name"/>
-          <input type="text" v-model="password" name="field1" placeholder="Your Password"/>
+          <input type="password" v-model="password" name="field1" placeholder="Your Password"/>
           <input type="submit" @click="signIn" value="Sign In">
           </form>
         </div>
@@ -31,13 +31,11 @@ export default {
   },
   methods: {
     signIn: function () {
-      console.log('hello')
       axios.post(`http://localhost:4000/api/signin`, {
         username: this.username,
         password: this.password
       })
       .then(response => {
-        console.log(response.data)
         this.token = response.data
         localStorage.setItem('token', this.token)
         this.$router.push({name: 'blog'})

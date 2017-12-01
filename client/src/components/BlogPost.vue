@@ -7,11 +7,9 @@
             <h3>Popular On Azharie's Note </h3>
             <h1 class="display-3"> {{ headline.title }}</h1>
             <p class="lead">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam dolores doloribus<br>
-              est dolor deleniti amet id placeat, ex ab, eius. Consequuntur imped<br>
-              it quis dolorum consectetur accusa
+              {{ headline.graf }}
             </p>
-            <p>{{ headline.author }}</p>
+            <p>{{ headline.author.username }}</p>
             <p><router-link :to="`/blog/article/${headline._id}`">Read More</router-link></p>
           </div>
         </div>

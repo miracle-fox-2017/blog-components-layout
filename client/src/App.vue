@@ -3,7 +3,7 @@
     <div class="container">
       <header class="clearfix">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand"> <router-link :to="`/`">AzharieNote</router-link></a>
+          <a class="navbar-brand"> <router-link :to="`/`">Azharie's Note</router-link></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -19,10 +19,6 @@
                 <a @click="logout">Logout</a>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
           </div>
         </nav>
       </header>
@@ -56,8 +52,11 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-ul, li {
+ul, li  {
   list-style: none;
-  margin-right: 0.5rem;
+  margin-right: 0.8rem;
+}
+p {
+  font-size: 16px;
 }
 </style>
