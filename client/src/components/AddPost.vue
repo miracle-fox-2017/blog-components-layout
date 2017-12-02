@@ -22,6 +22,12 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="image" class="col-lg-2 control-label">imageurl</label>
+                  <div class="col-lg-10">
+                    <input v-model="image" class="form-control" id="image" placeholder="imageurl" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="content" class="col-lg-2 control-label">Content</label>
                   <div class="col-lg-10">
                     <textarea v-model="content" class="form-control" rows="3" id="content"></textarea>
@@ -51,14 +57,16 @@ export default {
     return {
       msg: 'Admin Add Post',
       title: '',
-      content: ''
+      content: '',
+      image: ''
     }
   },
   methods: {
     postArticle () {
       axios.post('http://localhost:3000/api/blog', {
         title: this.title,
-        article: this.content
+        article: this.content,
+        image: this.image
       }, {
         headers: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhMWJiNGQ4ZTUwOWZmNzNkYTU3YzYzNiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MTE3Njc5OTl9.3rE7sD-fCk9kWgxdXftyGfEqdNEL2lHHgen-mjkPa5U'}
       })
@@ -67,11 +75,13 @@ export default {
         let obj = {
           _id: response.data.blogPost._id,
           title: response.data.blogPost.title,
-          article: response.data.blogPost.article
+          article: response.data.blogPost.article,
+          image: response.data.blogPost.image
         }
         this.$emit('new-article', obj)
         this.title = ''
         this.content = ''
+        this.image = ''
       })
       .catch((error) => {
         alert('UnSuccess Added')

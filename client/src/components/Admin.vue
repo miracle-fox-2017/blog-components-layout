@@ -7,7 +7,7 @@
         <tr>
           <th>#</th>
           <th>Title</th>
-          <th>Date Created</th>
+          <th>Image</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -15,7 +15,7 @@
         <tr v-for="(article, index) in articles">
           <td>{{ index+1 }}</td>
           <td>{{ article.title }}</td>
-          <td>DDMMYY HHMMSS</td>
+          <td>{{ article.image }}</td>
           <td>
             <button class="btn btn-link btn-xs" data-toggle="modal" data-target="#edit" @click="getId(article._id)" ><span class="glyphicon glyphicon-pencil"></span></button>
             <!-- <a href="#" class="btn btn-link btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> -->

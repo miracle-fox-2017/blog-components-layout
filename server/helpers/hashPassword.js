@@ -26,27 +26,31 @@ let hashed = (req, res, next) => {
 *  password if true next()
 */
 let reHashed = (req, res, next) => {
-  User.findOne({'username': req.body.username }, function (err, result) {
-    if(err){
-      res.send({err: err})
-    } else {
-      bcrypt.compare(req.body.password, result.password)
-      .then(function(response) {
-        tok.signToken({
-          id: result._id,
-          username: result.username
-        }, function(err, token){
-          if(err) res.status(500).send({ err: err })
-          else {
-            req.token = token
-            next()
-          }
+  if(req.body.username && req.body.password){
+    User.findOne({'username': req.body.username }, function (err, result) {
+      if(err){
+        res.send({err: err})
+      } else {
+        bcrypt.compare(req.body.password, result.password)
+        .then(function(response) {
+          tok.signToken({
+            id: result._id,
+            username: result.username
+          }, function(err, token){
+            if(err) res.status(500).send({ err: err })
+            else {
+              req.token = token
+              next()
+            }
+          })
+        }).catch(err=>{
+          res.status(500).send({err: err})
         })
-      }).catch(err=>{
-        res.status(500).send({err: err})
-      })
-    }
-  })
+      }
+    })
+  } else {
+    res.status(401).send({err: 'please fill your username and password'})
+  }
 }
 
 module.exports = {

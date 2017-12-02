@@ -35,7 +35,8 @@ let postBlog = (req, res) => {
     let blog = new Blog({
       userId: req.decoded.id,
       title: req.body.title,
-      article: req.body.article
+      article: req.body.article,
+      image: req.body.image
     })
     blog.save()
     .then(result=>{

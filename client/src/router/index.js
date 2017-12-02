@@ -6,6 +6,7 @@ import Router from 'vue-router'
 import Blog from '@/components/Blog'
 import Admin from '@/components/Admin'
 import Home from '@/components/Home'
+import Login from '@/components/Login'
 import Articles from '@/components/Articles'
 import Article from '@/components/Article'
 
@@ -35,13 +36,25 @@ export default new Router({
       ]
     },
     {
+      path: '/login',
+      component: Login,
+      props: true,
+      beforeEnter: function (to, from, next) {
+        if (localStorage.getItem('name')) {
+          next('/admin')
+        } else {
+          next()
+        }
+      }
+    },
+    {
       path: '/admin',
       name: 'Admin',
       component: Admin,
       props: true,
       beforeEnter: function (to, from, next) {
         if (!localStorage.getItem('name')) {
-          next('/')
+          next('/login')
         } else {
           next()
         }

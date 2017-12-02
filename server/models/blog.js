@@ -10,6 +10,7 @@ let blogSchema = new Schema({
     ref: 'User'
   },
   title: String,
+  image: String,
   article: String
 });
 

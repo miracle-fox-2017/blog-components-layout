@@ -2,7 +2,7 @@
   <div class="col-md-9">
     <div class="article" v-for="article in childarticles">
       <h2>{{ article.title }}</h2>
-      <!-- <h6>dd:mm:yy hh:mm:ss</h6> -->
+      <img :src="article.image" alt="image" />
       <p>{{ article.article }}</p>
     </div>
   </div>

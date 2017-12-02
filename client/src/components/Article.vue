@@ -1,40 +1,42 @@
 <template>
   <div class="col-md-9">
     <div class="article">
-      <h2>{{ childarticles[pos].title }}</h2>
-      <p>{{ childarticles[pos].article }}</p>
+      <h2>{{ article.title }}</h2>
+      <img :src="article.image" alt="image" />
+      <p>{{ article.article }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  props: ['childarticles'],
   name: 'Article',
   data () {
     return {
       msg: 'Article',
-      pos: ''
+      pos: '',
+      article: ''
     }
   },
   methods: {
-    getArticle () {
-      let temp = this.$route.params.id
-      let articles = this.childarticles
-      let i = articles.findIndex(function (e) {
-        return (e._id === temp)
+    getArticleAxios: function () {
+      axios.get('http://localhost:3000/api/blog/' + this.$route.params.id)
+      .then((resp) => {
+        this.article = resp.data.blogPost
       })
-      this.pos = i
+      .catch(err => {
+        console.log(err)
+      })
     }
   },
   watch: {
     '$route' (to, from) {
-      // react to route changes...
-      this.getArticle()
+      this.getArticleAxios()
     }
   },
   created () {
-    this.getArticle()
+    this.getArticleAxios()
   }
 }
 </script>

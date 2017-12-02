@@ -18,6 +18,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><router-link to="/admin">Admin</router-link></li>
+          <li><a href='#' @click="logoutNow">Log out</a></li>
         </ul>
       </div>
     </div>
@@ -26,6 +27,28 @@
 
 <script>
 export default {
+  data: function () {
+    return {
+      islogin: false
+    }
+  },
+  methods: {
+    checkLogin: function () {
+      if (localStorage.getItem('name')) {
+        this.islogin = true
+      } else {
+        this.islogin = false
+        localStorage.removeItem('name')
+      }
+    },
+    logoutNow: function () {
+      localStorage.removeItem('name')
+      this.$router.push('/')
+    }
+  },
+  created () {
+    this.checkLogin()
+  }
 }
 </script>
 
