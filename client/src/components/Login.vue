@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     loginNow: function () {
-      axios.post('http://localhost:3000/api/signin', {
+      axios.post('http://vps.masfaris.com:3003/api/signin', {
         username: this.username,
         password: this.password
       })

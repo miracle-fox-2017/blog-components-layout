@@ -62,7 +62,7 @@ export default {
       this.articles.splice(i, 1, payload)
     },
     delId (id) {
-      axios.delete('http://localhost:3000/api/blog/' + id, {
+      axios.delete('http://vps.masfaris.com:3003/api/blog/' + id, {
         headers: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhMWJiNGQ4ZTUwOWZmNzNkYTU3YzYzNiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MTE3Njc5OTl9.3rE7sD-fCk9kWgxdXftyGfEqdNEL2lHHgen-mjkPa5U'}
       })
       .then(result => {
@@ -79,7 +79,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:3000/api/blog')
+    axios.get('http://vps.masfaris.com:3003/api/blog')
     .then(result => {
       this.articles = result.data.blogPost
     })

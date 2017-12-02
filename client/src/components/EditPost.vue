@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     postArticle () {
-      axios.put('http://localhost:3000/api/blog/' + this.editarticle._id, {
+      axios.put('http://vps.masfaris.com:3003/api/blog/' + this.editarticle._id, {
         title: this.editarticle.title,
         article: this.editarticle.article
       }, {

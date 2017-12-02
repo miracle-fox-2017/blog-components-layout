@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     getArticleAxios: function () {
-      axios.get('http://localhost:3000/api/blog/' + this.$route.params.id)
+      axios.get('http://vps.masfaris.com:3003/api/blog/' + this.$route.params.id)
       .then((resp) => {
         this.article = resp.data.blogPost
       })

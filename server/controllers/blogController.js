@@ -10,6 +10,7 @@ let welcomePage = (req, res) => {
 }
 
 let signup = (req, res) => {
+  console.log('here')
   let user = new User({
     username: req.body.username,
     password: req.body.password

@@ -14,10 +14,11 @@ let hashed = (req, res, next) => {
   const myPlaintextPassword = req.body.password
   bcrypt.hash(myPlaintextPassword, saltRounds)
   .then(function(hash) {
+    console.log(hash)
     req.body.password = hash
     next()
   }).catch(err=>{
-    res.send({err: err})
+    res.status(400).send({err: err})
   })
 }
 

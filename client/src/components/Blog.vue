@@ -22,7 +22,7 @@ export default {
     Sidebar
   },
   created () {
-    axios.get('http://localhost:3000/api/blog')
+    axios.get('http://vps.masfaris.com:3003/api/blog')
     .then(result => {
       this.articles = result.data.blogPost
     })
