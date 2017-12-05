@@ -38,17 +38,21 @@ export default {
   },
   methods: {
     loginNow: function () {
-      axios.post('http://vps.masfaris.com:3003/api/signin', {
-        username: this.username,
-        password: this.password
-      })
-      .then(({data}) => {
-        localStorage.setItem('name', 'admin')
-        this.$router.push('/admin')
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      if (this.username === 'admin' && this.password === 'admin') {
+        axios.post('http://vps.masfaris.com:3003/api/signin', {
+          username: this.username,
+          password: this.password
+        })
+        .then(({data}) => {
+          localStorage.setItem('name', 'admin')
+          this.$router.push('/admin')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      } else {
+        alert('username or password wrong, check readme for password')
+      }
     }
   }
 }

@@ -17,7 +17,10 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: Home
+      component: Home,
+      beforeEnter: function (to, from, next) {
+        next('/blog')
+      }
     },
     {
       path: '/blog',

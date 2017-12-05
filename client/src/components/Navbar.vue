@@ -8,12 +8,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">My Blog</a>
+        <router-link to="/blog">My Blog</router-link>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav">
-          <li><router-link to="/">Home</router-link></li>
+          <!-- <li><router-link to="/">Home</router-link></li> -->
           <li><router-link to="/blog">Blog</router-link></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

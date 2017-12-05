@@ -1,9 +1,15 @@
 <template>
   <div class="col-md-9">
     <div class="article">
-      <h2>{{ article.title }}</h2>
-      <img :src="article.image" alt="image" />
-      <p>{{ article.article }}</p>
+      <div class="panel panel-default">
+        <div class="panel-heading"><router-link :to="{ path: '/blog/' + article._id, params: {} }"><h2>{{ article.title }}</h2></router-link></div>
+        <div class="panel-body">
+          <img :src="article.image" alt="image" class="img-responsive" />
+        </div>
+        <div class="panel-body">
+          <p>{{ article.article }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
