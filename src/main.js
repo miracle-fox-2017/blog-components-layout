@@ -8,7 +8,7 @@ import router from './router';
 import store from "./vuex/store";
 
 Vue.prototype.$axios=axios.create({
-  baseURL: 'http://localhost:3031/'
+  baseURL: 'http://tomybudiman.cf:3031/'
 });
 
 Vue.config.productionTip = false

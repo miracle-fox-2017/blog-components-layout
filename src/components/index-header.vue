@@ -8,11 +8,34 @@
       <router-link to="/">
         <button type="button">Home</button>
       </router-link>
+      <router-link v-on:click.native="logout" to="#" v-if="loginStatus">
+        <button type="button">Logout</button>
+      </router-link>
+      <router-link to="/login" v-else>
+        <button type="button">Login</button>
+      </router-link>
     </div>
   </div>
 </template>
 <script type="text/javascript">
-  export default{}
+  export default{
+    data(){
+      return{
+        loginStatus:false
+      }
+    },
+    created(){
+      if(localStorage.getItem("login_blog") != null){
+        this.loginStatus=true;
+      }
+    },
+    methods:{
+      logout(){
+        localStorage.removeItem("login_blog");
+        this.loginStatus=false;
+      }
+    }
+  }
 </script>
 <style lang="scss">
 .header-index {
