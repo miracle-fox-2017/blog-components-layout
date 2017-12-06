@@ -1,0 +1,3 @@
+ADMIN_SECRET=<Random Admin Secret>
+JWT_SECRET=<JWT Secret>
+DB_URL=<Mongo URL>
