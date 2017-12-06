@@ -5,9 +5,10 @@ import Vue from 'vue';
 import App from './App';
 import axios from "axios";
 import router from './router';
+import store from "./vuex/store";
 
 Vue.prototype.$axios=axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://tomybudiman.cf:3031/'
 });
 
 Vue.config.productionTip = false
@@ -16,6 +17,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

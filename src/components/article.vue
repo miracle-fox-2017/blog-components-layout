@@ -13,30 +13,12 @@
 <script type="text/javascript">
 export default{
   props:["articleId"],
-  data:function(){
-    return{
-      article:""
-    }
-  },
-  methods:{
-    getArticleById:function(targetId){
-      this.$axios.get(`/api/article/${targetId}`).then(({data})=>{
-        if(data.status){
-          this.article=data.msg;
-        }else{
-          console.log(data.msg);
-        }
-      }).catch((err)=>{
-        console.log(err);
-      });
-    }
-  },
-  created:function(){
-    this.getArticleById(this.articleId);
-  },
-  watch:{
-    articleId:function(id){
-      this.getArticleById(id);
+  computed:{
+    article(){
+      const article=this.$store.state.articles.filter((article)=>{
+        return article._id == this.articleId;
+      })[0];
+      return article;
     }
   }
 }

@@ -22,11 +22,15 @@ module.exports={
     }).then((response)=>{
       if(response){
         bcrypt.compare(req.body.password,response.password).then((responseHash)=>{
-          const loginToken=jwt.sign({userId:response._id},process.env.TOKEN_SECRET);
-          res.send({status:true,token:loginToken});
+          if(responseHash){
+            const loginToken=jwt.sign({userId:response._id},process.env.TOKEN_SECRET);
+            res.send({status:true,token:loginToken,userData:response});
+          }else{
+            res.send({status:false,msg:"Make sure the email / password you entered is correct!"});
+          }
         });
       }else{
-        res.send({status:false,msg:"User not found"});
+        res.send({status:false,msg:"User not found!"});
       }
     }).catch((err)=>{
       res.send({status:false,msg:err});

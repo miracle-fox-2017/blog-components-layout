@@ -1,99 +1,67 @@
 const Article=require("../models/articleModel");
+const User=require("../models/userModel");
 const ObjectId=require("mongoose").Types.ObjectId;
 const jwt=require("jsonwebtoken");
 
 module.exports={
-  create:(req,res)=>{
-    if(req.headers.login_token != null){
-      const userId=jwt.verify(req.headers.login_token,process.env.TOKEN_SECRET).userId;
-      new Article({
-        title:req.body.title,
-        content:req.body.content,
-        authorId:userId
-      }).save().then((response)=>{
-        res.send({status:true,msg:response});
-      }).catch((err)=>{
-        res.send({status:false,msg:err});
-      });
-    }else{
-      res.send({status:false,msg:"Invalid login token!"});
-    }
-  },
   all:(req,res)=>{
-    Article.find().populate("authorId").then((articles)=>{
+    Article.find().sort({"_id":-1}).populate("authorId","email").then((articles)=>{
       res.send({status:true,msg:articles});
     }).catch((err)=>{
       res.send({status:false,msg:err});
     });
   },
-  findAscLimit:(req,res)=>{
-    Article.find().limit(+req.params.limit).then((articles)=>{
-      res.send({status:true,msg:articles});
-    }).catch((err)=>{
-      res.send({status:false,msg:err});
-    });
-  },
-  byId:(req,res)=>{
-    Article.findOne({
-      "_id":ObjectId(req.params.articleId)
-    }).populate("authorId","email").then((article)=>{
-      if(article){
-        res.send({status:true,msg:article});
-      }else {
-        res.send({status:false,msg:"Article not found"});
+  create:(req,res)=>{
+    const userId=jwt.verify(req.headers.token,process.env.TOKEN_SECRET).userId;
+    User.findOne({
+      "_id":ObjectId(userId)
+    }).then((user)=>{
+      if(user != null){
+        req.body.authorId=userId;
+        new Article(req.body).save().then((response)=>{
+          res.send({status:true,msg:response});
+        });
+      }else{
+        res.send({status:false,msg:"Invalid token!"});
       }
     }).catch((err)=>{
       res.send({status:false,msg:err});
     });
   },
   update:(req,res)=>{
-    if(req.headers.login_token != null){
-      const userId=jwt.verify(req.headers.login_token,process.env.TOKEN_SECRET).userId;
-      Article.findOne({
-        "_id":ObjectId(req.params.articleId),
-        "authorId":ObjectId(userId)
-      }).then((article)=>{
-        if(article == null){
-          res.send({status:false,msg:"Article not found!"});
-        }else{
-          Article.updateOne({
-            "_id":ObjectId(req.params.articleId),
-            "authorId":ObjectId(userId)
-          },{
-            title:req.body.title,
-            content:req.body.content
-          }).then((response)=>{
-            res.send({status:true,msg:response});
-          });
-        }
-      }).catch((err)=>{
-        res.send({status:false,msg:err});
-      });
-    }else{
-      res.send({status:false,msg:"Invalid login token!"});
-    }
+    const userId=jwt.verify(req.headers.token,process.env.TOKEN_SECRET).userId;
+    User.findOne({
+      "_id":ObjectId(userId)
+    }).then((user)=>{
+      if(user != null){
+        Article.updateOne({
+          "_id":ObjectId(req.params.articleId)
+        },req.body).then((response)=>{
+          res.send({status:true,msg:response});
+        });
+      }else{
+        res.send({status:false,msg:"Invalid token!"});
+      }
+    }).catch((err)=>{
+      res.send({status:false,msg:err});
+    });
   },
   delete:(req,res)=>{
-    if(req.headers.login_token != null){
-      const userId=jwt.verify(req.headers.login_token,process.env.TOKEN_SECRET).userId;
-      Article.findOne({
-        "_id":ObjectId(req.params.id),
-        "authorId":ObjectId(userId)
-      }).then((article)=>{
-        if(article == null){
-          res.send({status:false,msg:"Article not found!"});
-        }else{
-          Article.deleteOne({
-            "_id":ObjectId(req.params.id)
-          }).then((response)=>{
-            res.send({status:true,msg:response});
-          });
-        }
-      }).catch((err)=>{
-        res.send({status:false,msg:err});
-      });
-    }else{
-      res.send({status:false,msg:"Invalid login token!"});
-    }
+    const userId=jwt.verify(req.headers.token,process.env.TOKEN_SECRET).userId;
+    User.findOne({
+      "_id":ObjectId(userId)
+    }).then((user)=>{
+      if(user != null){
+        Article.deleteOne({
+          "_id":ObjectId(req.params.id)
+        }).then((response)=>{
+          res.send({status:true,msg:response});
+        });
+      }else{
+        res.send({status:false,msg:"Invalid token!"});
+      }
+    }).catch((err)=>{
+      res.send({status:false,msg:err});
+    });
   }
 };
