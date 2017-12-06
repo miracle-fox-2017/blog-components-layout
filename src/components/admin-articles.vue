@@ -69,9 +69,7 @@ export default{
   },
   computed:{
     articles(){
-      return this.$store.state.articles.filter((article)=>{
-        return article.authorId._id == localStorage.getItem("login_blog_id");
-      });
+      return this.$store.state.articles;
     }
   },
   methods:{
