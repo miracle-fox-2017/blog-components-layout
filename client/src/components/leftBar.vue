@@ -1,10 +1,18 @@
 <template>
     <div class="col-md-2" >
-      <ul  v-for="article in articles" >
-          <li> 
-              <router-link :to="`/blog/${article._id}`">{{ article.title }}</router-link>          
+     <!--  <ul  v-for="article in articles" > -->
+
+      <ul class="list-group" v-for="article in articles" >
+        <router-link :to="`/blog/${article._id}`">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ article.title }}
           </li>
-      </ul> 
+      </router-link>
+      </ul>        
+<!--           <li> 
+              <router-link :to="`/blog/${article._id}`">{{ article.title }}</router-link>          
+          </li> -->
+      <!-- </ul>  -->
     </div>
 </template>
 
@@ -28,6 +36,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  font-size: 10px;
 }
 </style>

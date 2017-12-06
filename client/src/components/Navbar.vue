@@ -1,40 +1,32 @@
-  <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-              <ul>
-                <li class="rout">
-                  <router-link to="/">Home</router-link >
-                </li>                   
-              </ul> 
-            </div>
-            <div class="col-sm-2">
-              <ul>
-                <li class="rout">
-                  <!-- <a href="/blog"> Blog </a> -->
-                  <router-link to="/blog">Blog</router-link >
-                </li>                   
-              </ul> 
-            </div>            
-            <div class="flipkart-navbar-search smallsearch col-sm-6">
-                <div class="row">
-                    <input class="flipkart-navbar-input col-xs-11" type="" placeholder="Search for Blogs" name="">
-                    <button class="flipkart-navbar-button col-xs-1">
-                        <svg width="15px" height="15px">
-                            <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="col-sm-2">
-              <ul>
-                <li class="rout">
-                  <router-link to="/admin">Admin</router-link >
-                </li>                   
-              </ul> 
-            </div>            
+<template>
+  <div class="container">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <router-link to="/"> 
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </router-link >  
+            </li>
+            <li class="nav-item">
+              <router-link to="/blog">
+                <a class="nav-link" href="#">Blog</a>
+              </router-link>  
+            </li>
+            <li class="nav-item pull-right">
+              <router-link to="/admin">
+                <a class="nav-link" href="#">Admin</a>
+              </router-link>  
+            </li>
+          </ul>
         </div>
-    </div>
+        </nav>      
 </div>
 </template>
 
@@ -54,6 +46,7 @@ li {
   margin: 0 10px;
 }
 a {
+  font-size: 15px;
   color: #42b983;
 }
 </style>

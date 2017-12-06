@@ -2,66 +2,52 @@
 <div class="container">
 
       <div class="col-md-offset-0">
-
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add new Article </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Add new Article</h4>
-                </div>
-                <form>                  
-                  <table class="col-md-offset-4">
-                      <tr>                        
-                          <td>Author</td>   
-                      </tr>
-                      <tr>
-                          <td> <input v-model="author" type="text" name="author"> </td>                          
-                      </tr>
-                      <tr>
-                          <td>Title</td>
-                      </tr>
-                      <tr> 
-                          <td><input v-model="title" type="text" name="title"> </td>
-                      </tr>  
-                      <tr>
-                          <td>Desc</td> 
-                      </tr>
-                      <tr>
-                          <td> <textarea v-model="desc"> </textarea> </td>
-                      </tr>
-                      <tr>
-                          <td>Year</td> 
-                      </tr>
-                      <tr>
-                         <td> <input v-model="year" type="text" name="year"> </td>
-                      </tr>  
-                      <tr>
-                          <td>URL Link</td> 
-                      </tr>  
-                      <tr>
-                          <td> <input v-model="link" type="text" name="link"> </td> 
-                      </tr>                                           
-                      <div class="whitespace">                    
-                      </div>                    
-                      <tr>
-                        <td> <router-link to="/"> <button @click="createArticle" data-dismiss="modal" type="submit" value="submit">submit</button> </router-link> </td>
-                      </tr>                                                                             
-                  </table>                                                  
-                </form>                                                            
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success">Add Article</button>
+            <div class="modal" id="myModal">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                  <form>
+                    <fieldset>
+                      <legend>Legend</legend>
+                      <div class="form-group">
+                        <label for="Author"> Author </label>
+                        <input v-model="author" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Author">
+                      </div>
+                      <div class="form-group">
+                        <label for="title"> Title </label>
+                        <input v-model="title" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+                      </div>
+                      <div class="form-group">
+                        <label for="desc"> Desc </label>
+                        <input v-model="desc" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter desc">
+                      </div>
+                      <div class="form-group">
+                        <label for="year"> Year </label>
+                        <input v-model="year" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter year">
+                      </div> 
+                      <div class="form-group">
+                        <label for="link"> link </label>
+                        <input v-model="link" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter link">
+                      </div>
+                    </fieldset>
+                  </form>                    
+                  </div>
+                  <div class="modal-footer">
+                    <router-link to="/">
+                      <button @click.prevent ="createArticle" data-dismiss="modal" type="button" class="btn btn-primary">Save changes</button>
+                    </router-link>  
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
-              
-            </div>
-          </div>
-
+            </div>            
       </div>
 </div>        
 </template>

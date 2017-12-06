@@ -7,16 +7,17 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const index = require('./routes/index');
 const users = require('./routes/users');
+const mongoose = require('mongoose')
 require('dotenv').config()
 
 const app = express();
-const MongoClient = require('mongodb').MongoClient
-const url = 'mongodb://localhost:27017/blog';
+// const MongoClient = require('mongodb').MongoClient
+// const url = 'mongodb://localhost:27017/blog';
 
 const cors = require('cors') 
 app.use(cors())
 
-
+mongoose.connect(process.env.db,{ useMongoClient: true })
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

@@ -1,8 +1,15 @@
 <template>
 <div class="container">
-        <div class="col-md-offset-2"  v-for="article in articles">
-           <h1> {{ article.title }} </h1>
-           <article><p>{{ article.desc }}</p></article>
+        <div class="col-md-offset-1"  v-for="article in articles">
+            <div class="card border-primary mb-3">
+              <div class="card-header"> {{ article.author }}</div>
+              <div class="card-body text-primary">
+                <h4 class="card-title"> {{ article.title }} </h4>
+                <p class="card-text"> {{ article.desc }} </p>
+              </div>
+            </div>          
+<!--            <h1> {{ article.title }} </h1>
+           <article><p>{{ article.desc }}</p></article> -->
            <div class="col-md-12 gap10"></div>
         </div>
 </div>        

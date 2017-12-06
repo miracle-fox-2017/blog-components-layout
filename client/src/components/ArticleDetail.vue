@@ -1,8 +1,14 @@
 <template>
 <div class="container">
-        <div class="col-md-offset-2">
-           <h1> {{ article.title }} </h1>
-           <article><p>{{ article.desc }}</p></article>
+        <div class="col-md-offset-1">
+            <div class="card border-primary mb-3">
+              <div class="card-header"> {{ article.author }} </div>
+              <div class="card-body text-primary">
+                <h4 class="card-title"> {{ article.title }}</h4>
+                <p class="card-text"> {{ article.desc }} </p>
+              </div>
+            </div>  
+
            <a class="btn btn-blog pull-right marginBottom10" :href="`${article.link}`">READ MORE</a> 
            <div class="col-md-12 gap10"></div>
         </div>
