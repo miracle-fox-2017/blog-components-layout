@@ -26,7 +26,8 @@ const getDataArticleById = (req, res) => {
 const createArticle = (req, res) => {
     Article.create({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        image_url: req.body.image_url
     })
         .then((dataArticle) => {
             res.status(200).send(dataArticle)
