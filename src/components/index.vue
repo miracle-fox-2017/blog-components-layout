@@ -12,6 +12,9 @@ import homeHeader from "@/components/index-header";
 export default{
   components:{
     homeHeader
+  },
+  beforeCreate(){
+    this.$store.dispatch("getAllArticles");
   }
 }
 </script>

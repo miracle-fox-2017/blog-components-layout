@@ -8,17 +8,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Storyshare</a>
+        <router-link class="navbar-brand" to="/">Storyshare</router-link>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="dropdown active">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Article <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><router-link to="/admin">Article List</router-link></li>
-              <li><a data-toggle="modal" data-target="#new-article">New Article</a></li>
-            </ul>
-          </li>
+          <li><a data-toggle="modal" data-target="#new-article">New Article</a></li>
         </ul>
       </div>
     </div>

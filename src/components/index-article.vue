@@ -19,8 +19,8 @@ export default{
     }
   },
   created:function(){
-    this.$axios.get("/api/article/getasc/5").then(({data})=>{
-      this.latestFive=data.msg;
+    this.$axios.get("/api/article/all").then(({data})=>{
+      this.latestFive=data.msg.slice(0,5);
     }).catch((err)=>{
       console.log(err);
     });

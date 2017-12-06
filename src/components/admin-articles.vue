@@ -56,8 +56,6 @@
 export default{
   data:function(){
     return{
-      articles:null,
-      editArticle:null,
       newArticle:{
         title:null,
         content:null
@@ -69,34 +67,25 @@ export default{
       }
     }
   },
-  created:function(){
-    this.getAllArticle();
+  computed:{
+    articles(){
+      return this.$store.state.articles;
+    }
   },
   methods:{
-    getAllArticle:function(){
-      this.$axios.get("/api/article/all").then(({data})=>{
-        if(data.status){
-          this.articles=data.msg;
-        }else{
-          console.log(data.msg);
-        }
-      }).catch((err)=>{
-        console.log(err);
-      });
-    },
     addNewArticle:function(){
       this.$axios.post("/api/article/create",{
         title:this.newArticle.title,
         content:this.newArticle.content
       },{
         headers:{
-          login_token:localStorage.getItem("login_token")
+          token:localStorage.getItem("login_blog")
         }
       }).then(({data})=>{
         if(data.status){
-          this.articles.push(data.msg);
-          this.newArticle.title=null;
-          this.newArticle.content=null;
+          this.newArticle.title="";
+          this.newArticle.content="";
+          this.$store.commit("commitNewPost",data.msg);
         }else{
           console.log(data.msg);
         }
@@ -107,15 +96,11 @@ export default{
     deleteArticle:function(targetId){
       this.$axios.delete(`/api/article/delete/${targetId}`,{
         headers:{
-          login_token:localStorage.getItem("login_token")
+          token:localStorage.getItem("login_blog")
         }
       }).then(({data})=>{
         if(data.status){
-          this.articles.forEach(function(article,i){
-            if(article._id == targetId){
-              this.articles.splice(i,1);
-            }
-          }.bind(this));
+          this.$store.commit("commitDelPost",targetId);
         }else{
           console.log(data.msg);
         }
@@ -123,7 +108,7 @@ export default{
         console.log(err);
       });
     },
-    getArticleId:function(targetId){
+    getArticleId:function(targetId){ // Set edit modal value
       this.articles.forEach(function(article){
         if(article._id == targetId){
           this.editArticle.id=targetId;
@@ -138,19 +123,11 @@ export default{
         content:this.editArticle.content
       },{
         headers:{
-          login_token:localStorage.getItem("login_token")
+          token:localStorage.getItem("login_blog")
         }
       }).then(({data})=>{
         if(data.status){
-          this.articles.forEach(function(article,i){
-            if(article._id == targetId){
-              this.articles[i].title=this.editArticle.title;
-              this.articles[i].content=this.editArticle.content;
-              this.editArticle.id=null;
-              this.editArticle.title=null;
-              this.editArticle.content=null;
-            }
-          }.bind(this));
+          this.$store.dispatch("getAllArticles");
         }else{
           console.log(data.msg);
         }

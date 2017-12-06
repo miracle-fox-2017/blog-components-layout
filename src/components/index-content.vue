@@ -18,22 +18,12 @@
 </template>
 <script type="text/javascript">
 export default{
-  data:function(){
-    return{
-      articles:null
+  computed:{
+    articles(){
+      return this.$store.state.articles
     }
   },
-  created:function(){
-    this.getAllArticle();
-  },
   methods:{
-    getAllArticle:function(){
-      this.$axios.get("/api/article/all").then(({data})=>{
-        this.articles=data.msg;
-      }).catch((err)=>{
-        console.log(err);
-      });
-    },
     articleUrl:function(targetId){
       return `/article/${targetId}`;
     }

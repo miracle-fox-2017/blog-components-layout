@@ -9,6 +9,7 @@ import Article from "@/components/article";
 // Admin Component
 import Admin from "@/components/admin";
 import adminArticles from "@/components/admin-articles";
+import loginAdmin from "@/components/admin-login";
 
 Vue.use(Router)
 
@@ -45,6 +46,10 @@ export default new Router({
           component:adminArticles
         }
       ]
+    },
+    {
+      path:"/login",
+      component:loginAdmin
     }
   ]
 })
