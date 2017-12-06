@@ -22,6 +22,12 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="image" class="col-lg-2 control-label">Image Link</label>
+                  <div class="col-lg-10">
+                    <input v-model="editarticle.image" class="form-control" id="image" placeholder="Image Link" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="textArea" class="col-lg-2 control-label">Content</label>
                   <div class="col-lg-10">
                     <textarea v-model="editarticle.article" class="form-control" rows="3" id="textArea">{{editarticle.article}}</textarea>
@@ -30,7 +36,7 @@
                 <div class="form-group modal-footer">
                   <div class="col-lg-10 col-lg-offset-2">
                     <button type="reset" data-dismiss="modal" class="btn btn-default">Cancel</button>
-                    <button type="submit" data-dismiss="modal" class="btn btn-primary">Submit</button>
+                    <button type="submit" @click="postArticle" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </fieldset>
@@ -57,6 +63,7 @@ export default {
     postArticle () {
       axios.put('http://vps.masfaris.com:3003/api/blog/' + this.editarticle._id, {
         title: this.editarticle.title,
+        image: this.editarticle.image,
         article: this.editarticle.article
       }, {
         headers: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhMWJiNGQ4ZTUwOWZmNzNkYTU3YzYzNiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MTE3Njc5OTl9.3rE7sD-fCk9kWgxdXftyGfEqdNEL2lHHgen-mjkPa5U'}

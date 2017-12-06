@@ -7,7 +7,6 @@
         <tr>
           <th>#</th>
           <th>Title</th>
-          <th>Image</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -15,11 +14,11 @@
         <tr v-for="(article, index) in articles">
           <td>{{ index+1 }}</td>
           <td>{{ article.title }}</td>
-          <td>{{ article.image }}</td>
           <td>
             <button class="btn btn-link btn-xs" data-toggle="modal" data-target="#edit" @click="getId(article._id)" ><span class="glyphicon glyphicon-pencil"></span></button>
             <!-- <a href="#" class="btn btn-link btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> -->
             <button class="btn btn-link btn-xs" @click="delId(article._id)"><span class="glyphicon glyphicon-trash"></span></button >
+            <router-link :to="{ path: '/blog/' + article._id, params: {} }"><span class="glyphicon glyphicon-link"></span></router-link>
           </td>
         </tr>
       </tbody>

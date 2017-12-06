@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     postArticle () {
-      axios.post('http://localhost:3000/api/blog', {
+      axios.post('http://vps.masfaris.com:3003/api/blog', {
         title: this.title,
         article: this.content,
         image: this.image
