@@ -12,7 +12,7 @@ export default{
   },
   beforeCreate(){
     if(localStorage.getItem("login_blog") == null){
-      this.$router.push("/")
+      this.$router.push("/");
     }else{
       this.$store.dispatch("getAllArticles");
     }

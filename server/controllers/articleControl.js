@@ -5,7 +5,7 @@ const jwt=require("jsonwebtoken");
 
 module.exports={
   all:(req,res)=>{
-    Article.find().sort({"_id":-1}).populate("authorId").then((articles)=>{
+    Article.find().sort({"_id":-1}).populate("authorId","email").then((articles)=>{
       res.send({status:true,msg:articles});
     }).catch((err)=>{
       res.send({status:false,msg:err});

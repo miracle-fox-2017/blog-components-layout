@@ -8,7 +8,7 @@
       <router-link to="/">
         <button type="button">Home</button>
       </router-link>
-      <router-link v-on:click.native="logout" to="#" v-if="loginStatus">
+      <router-link v-on:click.native="logout" to="/" v-if="loginStatus">
         <button type="button">Logout</button>
       </router-link>
       <router-link to="/login" v-else>
@@ -31,6 +31,7 @@
     },
     methods:{
       logout(){
+        localStorage.removeItem("login_blog_id");
         localStorage.removeItem("login_blog");
         this.loginStatus=false;
       }

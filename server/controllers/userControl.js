@@ -24,7 +24,7 @@ module.exports={
         bcrypt.compare(req.body.password,response.password).then((responseHash)=>{
           if(responseHash){
             const loginToken=jwt.sign({userId:response._id},process.env.TOKEN_SECRET);
-            res.send({status:true,token:loginToken});
+            res.send({status:true,token:loginToken,userData:response});
           }else{
             res.send({status:false,msg:"Make sure the email / password you entered is correct!"});
           }

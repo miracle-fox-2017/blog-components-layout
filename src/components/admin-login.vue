@@ -49,6 +49,7 @@ export default {
         }).then(function({data}){
           if(data.status){
             this.clearInput();
+            localStorage.setItem("login_blog_id",data.userData._id);
             localStorage.setItem("login_blog",data.token);
             this.$router.push("/admin");
           }else{
