@@ -74,8 +74,6 @@ export default {
         link : this.link
       })
     .then(result => {
-  
-      console.log(result);
       this.$emit('addArticle', {
         addArticle : result.data
       })   

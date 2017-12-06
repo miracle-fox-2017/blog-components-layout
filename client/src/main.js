@@ -7,8 +7,10 @@ import router from './router'
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
+let local = 'http://localhost:3000';
+let url = 'http://ec2-34-216-160-66.us-west-2.compute.amazonaws.com:3015'
 Vue.prototype.$axios = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: url
 })
 
 new Vue({

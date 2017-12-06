@@ -125,7 +125,6 @@ export default {
         'link' : this.link
       })
       .then(response => {
-        console.log("ini old data",response.data)
         this.$emit('update-article', {
           oldData : response.data.oldArticle,
           newData : response.data.newArticle

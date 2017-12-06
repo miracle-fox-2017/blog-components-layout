@@ -28,7 +28,6 @@ export default {
       this.$axios.get(`/article/${id}`)
       .then(response => {
         this.article = response.data[0]
-        console.log("DETAILL", this.article)
       })
       .catch((err) => {
         console.log(err)
