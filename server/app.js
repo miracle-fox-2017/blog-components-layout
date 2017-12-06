@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const articles = require('./routes/articles');
 const users = require('./routes/users');
@@ -14,7 +15,7 @@ const cors = require('cors')
 
 app.use(cors())
 
-mongoose.connect('mongodb://localhost/blog', { useMongoClient: true })
+mongoose.connect(process.env.MONGO_ATLAS, { useMongoClient: true })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

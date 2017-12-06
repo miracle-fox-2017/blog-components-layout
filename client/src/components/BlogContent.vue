@@ -10,7 +10,7 @@
           <!-- <blogshortarticle v-for="(article,i) in articles" :key="i" :article="article"></blogshortarticle> -->
         </div>
         <div class="five wide column large screen only">
-          <blogsidebar :articles="articles"/>
+          <BlogSidebar :articles="articles"/>
         </div>
       </div>
     </div>
@@ -18,8 +18,11 @@
 </template>
 
 <script>
-
+import BlogSidebar from '@/components/BlogSidebar'
 export default {
+  components: {
+    BlogSidebar
+  },
   data () {
     return {
       articles: {}

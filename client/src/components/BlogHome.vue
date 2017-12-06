@@ -1,13 +1,16 @@
 <template>
   <div class="ui container">
-    <blognavbar/>
+    <BlogNavbar/>
     <router-view/>
   </div>
 </template>
 
 <script>
-
+import BlogNavbar from '@/components/BlogNavbar'
 export default {
+  components: {
+    BlogNavbar
+  },
   name: 'BlogHome'
 }
 </script>

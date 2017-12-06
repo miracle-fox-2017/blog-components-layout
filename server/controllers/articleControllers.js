@@ -1,7 +1,6 @@
 const Article = require('../models/articleModel')
 
 getOne = (req, res) => {
-  console.log(req.params)
   Article.findById(req.params.id)
   .then(response => {
     res.status(200).send(response)
