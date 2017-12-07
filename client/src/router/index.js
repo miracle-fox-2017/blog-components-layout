@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import TimelineRoute from '@/components/TimelineRoute'
 import TimelineItem from '@/components/TimelineItem'
 import ItemDetail from '@/components/ItemDetail'
+import AdminTimeline from '@/components/AdminTimeline'
 
 Vue.use(Router)
 
@@ -16,9 +17,9 @@ export default new Router({
     },
     {
       path: '/article',
-      name: 'TimelineRoute',
       component: TimelineRoute,
       children: [{
+        name: 'TimelineRoute',
         path: '',
         component: TimelineItem
       }, {
@@ -26,6 +27,11 @@ export default new Router({
         component: ItemDetail,
         props: true
       }]
+    },
+    {
+      path: '/admin',
+      name: 'AdminTimeline',
+      component: AdminTimeline
     }
   ]
 })

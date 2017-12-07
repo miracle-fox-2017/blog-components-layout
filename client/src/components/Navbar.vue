@@ -2,7 +2,7 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Blog Pak Haji</a>
+        <router-link class="navbar-brand" to="/article" > Blog Pak Haji</router-link>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Add New Article</a></li>

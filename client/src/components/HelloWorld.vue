@@ -35,7 +35,7 @@ export default {
       .then(({data}) => {
         console.log(data)
         localStorage.setItem('tokenPakHaji', data.token)
-        this.$router.push({name: 'TimelineRoute'})
+        this.$router.push({name: 'AdminTimeline'})
       })
     }
   }
