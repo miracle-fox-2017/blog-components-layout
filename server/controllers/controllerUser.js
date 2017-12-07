@@ -44,15 +44,13 @@ const getDataUser = (req, res) => {
                                 username: dataUser.username,
                                 isLogin: true
                             }
-
-                            jwt.sign(payload, process.env.secret, function (err, token) {
+                            jwt.sign(payload, "lallalallalallala", function (err, token) {
                                 if (err) {
-                                    console.log(err)
+                                    send(err)
                                 } else {
-                                    res.status(200).send({
-                                        message: "Login berhasil",
-                                        token: token,
-                                        dataUser : dataUser
+                                    send({
+                                        data: payload,
+                                        token: token
                                     })
                                 }
                             })

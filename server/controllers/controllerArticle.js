@@ -1,10 +1,8 @@
 const Article = require('../models/modelArticle')
 
 const getDataArticle = (req, res) => {
-    // console.log('yeay')
     Article.find()
         .then((dataArticle) => {
-            // console.log('dapet data ', dataArticle)
             res.status(200).send(dataArticle)
         })
         .catch((reason) => {

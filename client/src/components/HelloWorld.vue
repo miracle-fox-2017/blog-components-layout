@@ -3,8 +3,8 @@
     <div class="wrapper">
             <div class="form-signin text-center">
                 <h1>{{ msg }}</h1>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="username" required="" autofocus="" />
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" />
+                  <input type="text" class="form-control" v-model="username" name="username" placeholder="username" required="" autofocus="" />
+                  <input type="password" class="form-control" v-model="password" name="password" placeholder="Password" required="" />
                   <button class="btn btn-lg btn-primary btn-block" type="submit" @click="login" >Login</button>
                 <ul>
                     <li data-toggle="modal" data-target="#register"> <a href="#"> Create Account </a></li>
@@ -20,14 +20,16 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Login'
+      msg: 'Login',
+      username: '',
+      password: ''
     }
   },
   methods:{
     login(){
         this.$http.post('api/signin', {
-          username : document.getElementById("username").value,
-          password : document.getElementById("password").value
+          username : this.username,
+          password : this.password
         })
           .then((dataUser)=>{
             localStorage.setItem('token', dataUser.data.token)
