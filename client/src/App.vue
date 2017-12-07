@@ -3,7 +3,7 @@
     <div class="container">
       <header class="clearfix">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand"> <router-link :to="`/`">Azharie's Note</router-link></a>
+          <a class="navbar-brand"> <router-link :to="`/blog`">Azharie's Note</router-link></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -15,8 +15,11 @@
               <li class="nav-item">
                 <p><router-link v-bind:to="`/Posting`">Posting</router-link></p>
               </li>
-              <li class="nav-item">
-                <a @click="logout">Logout</a>
+              <li class="nav-item" v-if="userId">
+                <p><a @click="logout">Logout</a></p>
+              </li>
+              <li class="nav-item" v-else>
+                <p><router-link v-bind:to="`/register`">Login</router-link></p></p>
               </li>
             </ul>
           </div>
@@ -34,6 +37,11 @@
 <script>
 export default {
   name: 'app',
+  data () {
+    return {
+      userId: localStorage.getItem('token')
+    }
+  },
   methods: {
     logout: function () {
       localStorage.removeItem('token')

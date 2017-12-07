@@ -11,7 +11,6 @@ const getAllBlogPosts = (req, res) => {
   })
 }
 
-
 const getAllBlogPostsByUserId = (req, res) => {
   Blog.find({author: req.params.userId})
     .populate('author')
@@ -55,7 +54,9 @@ const findByIdAndUpdate = (req, res) => {
   Blog.findByIdAndUpdate({_id : req.params._id},{
     title : req.body.title,
     author : req.body.author,
-    article : req.body.article
+    article : req.body.article,
+    graf: req.body.graf,
+    img: req.body.img
   })
   .then(post => {
     res.status(200).send(post)

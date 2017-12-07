@@ -2,9 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
-    <p>
-      <router-link to="/blog">Blog</router-link>
-    </p>
+    <div></div>
   </div>
 </template>
 

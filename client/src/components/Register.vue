@@ -22,7 +22,6 @@
 export default {
   name: 'Register',
   beforeCreate: function () {
-    console.log('hello', '--=-==')
     return (localStorage.getItem('token')) ? this.$router.push({name: 'blog'}) : console.log('hello')
   }
 }

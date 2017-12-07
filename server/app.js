@@ -25,16 +25,6 @@ mongoose.connect('mongodb://localhost/blogTdd')
 const api = require('./routes/api')
 app.use('/api', api)
 
-
-app.delete('/blog/:id', function(req, res) {
-  res.send({})
-})
-
-app.post('/blog/login', function(req, res) {
-  res.send({})
-})
-
-
 app.listen(4000, function(){
   console.log(`i'm alive 4000`);
 });
