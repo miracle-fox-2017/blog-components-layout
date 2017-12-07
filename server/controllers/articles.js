@@ -19,7 +19,8 @@ var postArticle = (req, res) => {
       status: "success",
       _id: hasil._id,
       title: hasil.title,
-      description: hasil.description
+      description: hasil.description,
+      urlimg: hasil.urlimg
     })
   }).catch((err) => {
     res.status(404).send(err)
@@ -29,7 +30,8 @@ var postArticle = (req, res) => {
 var editArticle = (req, res) => {
   article.findById({_id: req.params.id}).then((hasil) => {
     hasil.title = req.body.title,
-    hasil.description = req.body.description
+    hasil.description = req.body.description,
+    hasil.urlimg = req.body.urlimg
 
     hasil.save(function(err) {
       if(err) {
@@ -39,7 +41,8 @@ var editArticle = (req, res) => {
           _id: hasil._id,
           status: "updated",
           title: hasil.title,
-          description: hasil.description
+          description: hasil.description,
+          urlimg: hasil.urlimg
         })
       }
     })
@@ -60,7 +63,8 @@ var deleteArticle = (req, res) => {
           status: "deleted",
           _id: hasil._id,
           title: hasil.title,
-          description: hasil.description
+          description: hasil.description,
+          urlimg: hasil.urlimg
         })
       }
     })

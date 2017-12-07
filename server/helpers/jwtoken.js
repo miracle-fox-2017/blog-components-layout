@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const secret = "aku kangen kamu"
+const secret = process.env.JWTOKEN
 
 class Jwtoken {
 
