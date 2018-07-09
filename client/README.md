@@ -1,6 +1,6 @@
-# blog-components-layout
+# simple-blog
 
-> Simple blog using Vue as Frontend library.
+> Simple blog using vue as Frontend library
 
 ## Build Setup
 
